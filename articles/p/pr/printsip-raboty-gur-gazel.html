@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🚐</text></svg>">
+    <title>Принцип работы ГУР Газель: устройство, схема и диагностика — Gazel-Help</title>
+    <meta name="description" content="Подробный разбор принципа работы ГУР Газель. Устройство насоса, распределителя и рейки. Типичные неисправности и советы по обслуживанию системы.">
+    <link rel="canonical" href="https://gazel-help.vercel.app/articles/p/pr/printsip-raboty-gur-gazel.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Принцип работы ГУР Газель: устройство, схема и диагностика">
+    <meta property="og:description" content="Подробный разбор принципа работы ГУР Газель. Устройство насоса, распределителя и рейки. Типичные неисправности и советы по обслуживанию системы.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1777185859">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🚐</span>
+                <span>Gazel-Help</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/кузов-и-кабина/" class="nav-link">📁 Кузов И Кабина</a>
+<a href="/category/электрика-и-электроника/" class="nav-link">📁 Электрика И Электроника</a>
+<a href="/category/двигатель/" class="nav-link">📁 Двигатель</a>
+<a href="/category/сравнения-и-выбор/" class="nav-link">📁 Сравнения И Выбор</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/кузов-и-кабина/" class="dropdown-item">📁 Кузов И Кабина</a>
+<a href="/category/электрика-и-электроника/" class="dropdown-item">📁 Электрика И Электроника</a>
+<a href="/category/двигатель/" class="dropdown-item">📁 Двигатель</a>
+<a href="/category/сравнения-и-выбор/" class="dropdown-item">📁 Сравнения И Выбор</a>
+<a href="/category/кпп-и-трансмиссия/" class="dropdown-item">📁 Кпп И Трансмиссия</a>
+<a href="/category/подвеска-и-рулевое/" class="dropdown-item">📁 Подвеска И Рулевое</a>
+<a href="/category/мосты,-ступицы-и-колёса/" class="dropdown-item">📁 Мосты, Ступицы И Колёса</a>
+<a href="/category/соболь/" class="dropdown-item">📁 Соболь</a>
+<a href="/category/топливная-система-и-гбо/" class="dropdown-item">📁 Топливная Система И Гбо</a>
+<a href="/category/тормозная-система/" class="dropdown-item">📁 Тормозная Система</a>
+<a href="/category/оптика-и-свет/" class="dropdown-item">📁 Оптика И Свет</a>
+<a href="/category/панель-приборов-и-индикаторы/" class="dropdown-item">📁 Панель Приборов И Индикаторы</a>
+<a href="/category/салон-и-комфорт/" class="dropdown-item">📁 Салон И Комфорт</a>
+<a href="/category/система-охлаждения/" class="dropdown-item">📁 Система Охлаждения</a>
+<a href="/category/система-отопления-и-климат/" class="dropdown-item">📁 Система Отопления И Климат</a>
+<a href="/category/тюнинг-и-доработки/" class="dropdown-item">📁 Тюнинг И Доработки</a>
+<a href="/category/техжидкости-и-заправочные-объёмы/" class="dropdown-item">📁 Техжидкости И Заправочные Объёмы</a>
+<a href="/category/мультимедиа-и-допоборудование/" class="dropdown-item">📁 Мультимедиа И Допоборудование</a>
+<a href="/category/диагностика/" class="dropdown-item">📁 Диагностика</a>
+<a href="/category/рама-и-усиление/" class="dropdown-item">📁 Рама И Усиление</a>
+<a href="/category/выхлопная-система/" class="dropdown-item">📁 Выхлопная Система</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/подвеска-и-рулевое/">Подвеска И Рулевое</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Принцип работы ГУР Газель: устройство, схема и диагностика</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Принцип работы ГУР Газель: устройство и диагностика</h1>
+                    
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Эффективное управление коммерческим транспортом, особенно в условиях плотного городского трафика, напрямую зависит от исправности системы гидроусилителя руля. Принцип работы ГУР Газель базируется на преобразовании механического усилия водителя в гидравлическое давление, что позволяет легко маневрировать даже на низких скоростях или при парковке. Без этого узла повороты колес требовали бы колоссальных физических затрат, делая эксплуатацию автомобиля утомительной и потенциально опасной.</p>
+
+<p>В основе системы лежит замкнутый контур, заполненный специальной рабочей жидкостью. Когда вы поворачиваете рулевое колесо, в действие вступает <strong>насос ГУР</strong>, который создает необходимое давление, передавая жидкость к рулевому механизму. Понимание этой физики процессов помогает владельцам автомобилей семейства ГАЗ быстрее диагностировать проблемы и избегать дорогостоящего ремонта в будущем.</p>
+
+<h2>Основные компоненты системы гидроусилителя</
+
+<p>Система гидроусилителя руля на автомобилях Газель (Бизнес, Некст, Фермер) представляет собой сложный агрегат, состоящий из нескольких критически важных элементов. Каждый узел выполняет свою функцию, и выход из строя одного компонента нарушает работу всей схемы. <em>Насос</em> является сердцем системы, обеспечивая циркуляцию масла под высоким давлением.</p>
+
+<blockquote>
+<p>⚠️ Внимание: Использование неоригинальных или некачественных уплотнителей при ремонте может привести к быстрому выходу из строя <strong>насоса ГУР</strong> из-за нарушения герметичности и завоздушивания системы.</p>
+</blockquote>
+
+<p>Ключевым элементом, распределяющим потоки жидкости, является <strong>распределитель</strong> (золотниковый механизм). Именно он определяет, в какую полость цилиндра направить масло, чтобы повернуть колеса в нужную сторону. Также важную роль играет <em>бачок</em>, который служит резервуаром для рабочей жидкости и системой охлаждения масла, возвращающегося из контура.</p>
+
+<ul>
+<li>🔧 <strong>Насос</strong>: создает давление в системе (лопастной или роторный тип).</li>
+<li>🔧 <strong>Рулевой механизм (рейка)</strong>: преобразует гидравлическое давление в движение колес.</li>
+<li>🔧 <strong>Шланги высокого и низкого давления</strong>: соединяют все узлы в единую магистраль.</li>
+<li>🔧 <strong>Бачок с фильтром</strong>: очищает жидкость от продуктов износа и металлической стружки.</li>
+</ul>
+
+<h2>Физика процесса: как создается усилие</
+
+<p>Принцип действия гидроусилителя на Газели строится на законе Паскаля и работе золотникового распределителя. В нейтральном положении, когда руль неподвижен, жидкость циркулирует по малому кругу: от насоса через распределитель сразу обратно в бачок. Давление в этот момент минимально, так как <strong>рабочее давление</strong> не требуется для удержания колес.</p>
+
+<p>Как только водитель начинает поворачивать руль, вал распределителя поворачивается относительно торсиона. Это смещение открывает каналы, направляющие поток масла под давлением в одну из рабочих полостей гидроцилиндра. Поршень, находящийся внутри рейки, начинает двигаться, толкая зубчатую передачу и поворачивая колеса.</p>
+
+<details class="faq-item"><summary>Технические нюансы работы торсиона</summary><div class="faq-answer"><p>Торсион — это упругий стержень, соединяющий вал рулевого колеса и вал распределителя. При повороте руля торсион скручивается, и именно эта закрутка смещает золотник, открывая доступ маслу. Чем сильнее вы давите на руль, тем больше скручивается торсион и тем больше открывается канал для масла.</p></div></details>
+
+<p>Особенностью системы является наличие обратных клапанов, которые предотвращают перетекание жидкости из зоны высокого давления в зону низкого без необходимости. Это позволяет сохранять усилие на колесах даже при остановленном двигателе, хотя и с большим сопротивлением. Важно понимать, что <em>гидравлическое сопротивление</em> меняется в зависимости от скорости вращения руля и нагрузки на колеса.</p>
+
+<h2>Типы насосов и их особенности на Газели</
+
+<p>На различных модификациях Газели могут устанавливаться разные типы насосов, однако наиболее распространенным является лопастной насос двойного действия. Его конструкция обеспечивает равномерную подачу жидкости и снижает пульсацию давления, что положительно сказывается на плавности хода руля.</p>
+
+<div class="poll-widget" id="poll-2bda6221"><div class="poll-widget-question">📊 С каким типом ГУР вы сталкивались чаще?</div><div class="poll-widget-option" data-poll="2bda6221" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Лопастной насос ZF</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="2bda6221" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Роторный насос</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="2bda6221" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Электроусилитель (ЭУР)</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="2bda6221" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Затрудняюсь ответить</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<p>Роторные насосы, которые также встречаются на некоторых версиях, отличаются компактностью и высоким КПД, но более чувствны к чистоте рабочей жидкости. В лопастном насосе основной рабочей парой являются статор, ротор и пластины (лопасти), которые под действием центробежной силы прижимаются к стенкам статора, создавая камеры переменного объема.</p>
+
+<p>Сравнительная характеристика типов насосов представлена в таблице ниже:</p>
+
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Лопастной насос</th>
+<th>Роторный насос</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ресурс</td>
+<td>Высокий (до 250 тыс. км)</td>
+<td>Средний (до 150 тыс. км)</td>
+</tr>
+<tr>
+<td>Чувствительность к грязи</td>
+<td>Средняя</td>
+<td>Высокая</td>
+</tr>
+<tr>
+<td>Уровень шума</td>
+<td>Низкий</td>
+<td>Средний</td>
+</tr>
+<tr>
+<td>Стоимость ремонта</td>
+<td>Доступная</td>
+<td>Высокая</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Алгоритм работы при повороте колес</
+
+<p>Рассмотрим детально последовательность событий в момент маневра. Когда водитель поворачивает руль влево, вал распределителя смещается, открывая магистраль высокого давления для левой полости цилиндра. Одновременно с этим правая полость соединяется с магистралью слива (обраткой).</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>При резком повороте руля до упора давление в системе достигает максимума. Не удерживайте руль в крайнем положении дольше 5 секунд, чтобы не повредить сальники и насос.</p></div>
+
+<p>Жидкость, поступая в цилиндр, толкает поршень, который через зубчатую передачу поворачивает сошку или тяги. Одновременно с этим происходит дросселирование потока: часть жидкости уходит на слив, что позволяет регулировать скорость перемещения поршня и предотвращает удары. Этот процесс называется <strong>реактивным действием</strong> системы.</p>
+
+<blockquote>
+<p>⚠️ Внимание: Если при повороте руля слышен свист или гул, это указывает на кавитацию или попадание воздуха в систему, что требует немедленной проверки уровня жидкости и герметичности шлангов.</p>
+</blockquote>
+
+<p>При возврате руля в нейтральное положение торсион раскручивается, золотник перекрывает каналы высокого давления, и система возвращается в режим холостой циркуляции. Современные системы на Газель Некст могут иметь электронное управление, где клапан регулирует давление в зависимости от скорости автомобиля, снижая усилие на парковке и увеличивая "тяжесть" руля на трассе.</p>
+
+<h2>Диагностика неисправностей по признакам</
+
+<p>Понимание принципа работы позволяет точно диагностировать неисправности. Например, если руль стал тяжелым только на холодную, вероятнее всего, проблема в вязкости жидкости или износе лопастей насоса. Если же усилие пропало полностью, возможно, порвался ремень привода или вышел из строя сам насос.</p>
+
+<div class="checklist-block"><h4>☑️ Первичная диагностика ГУР</h4><label class="check-item"><input type="checkbox"><span>Проверить уровень жидкости в бачке</span></label><label class="check-item"><input type="checkbox"><span>Осмотреть шланги на предмет течей</span></label><label class="check-item"><input type="checkbox"><span>Проверить натяжение ремня привода</span></label><label class="check-item"><input type="checkbox"><span>Прослушать работу насоса на предмет шума</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<p>Стук в рулевой рейке часто путают с проблемами гидравлики, но на самом деле это механический износ пары "шестерня-рейка" или люфт карданчика. Гул насоса может свидетельствовать о том, что <strong>рабочее давление</strong> падает из-за износа внутренней пары или загрязнения фильтрующего элемента в бачке.</p>
+
+<p>Частые симптомы и их причины:</p>
+<ul>
+<li>🔴 <strong>Пена в бачке</strong>: попадание воздуха через негерметичные соединения на входе в насос.</li>
+<li>🔴 <strong>Тяжелый руль</strong>: низкий уровень жидкости, износ насоса или заклинивание распределителя.</li>
+<li>🔴 <strong>Самопроизвольный поворот</strong>: перетекание жидкости через клапаны распределителя из-за загрязнения или износа.</li>
+</ul>
+
+<h2>Техническое обслуживание и замена жидкости</
+
+<p>Для стабильной работы ГУР Газель необходимо регулярно менять рабочую жидкость. Со временем масло теряет свои свойства, в нем накапливаются продукты износа и металлическая стружка, которая действует как абразив. Производитель рекомендует проводить замену каждые 60-80 тысяч километров пробега или раз в 2-3 года.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Используйте только рекомендованные производителем типы масел (обычно Dexron II или Dexron III). Смешивание разных типов жидкостей может привести к образованию осадка и разрушению резиновых уплотнений.</p></div>
+
+<p>Процесс замены включает в себя не просто слив старого масла из бачка, но и прокачку системы. Необходимо поднять переднюю часть автомобиля, отсоединить шланг обратки от бачка, заглушить отверстие в бачке и прокрутить двигатель стартером (или кратковременно запустить), чтобы выдавить остатки жидкости из системы.</p>
+
+<blockquote>
+<p>⚠️ Внимание: Никогда не запускайте двигатель с сухим насосом ГУР даже на несколько секунд — это гарантированно приведет к задирам и выходу узла из строя.</p>
+</blockquote>
+
+<p>После заливки новой жидкости необходимо несколько раз плавно повернуть руль от упора до упора (не задерживаясь в крайних положениях) при работающем двигателе, чтобы удалить воздушные пробки. Уровень жидкости проверяется на прогретом двигателе и должен находиться между метками MIN и MAX.</p>
+
+<h2>Влияние температуры на работу системы</
+
+<p>Температурный режим играет важную роль в эффективности работы гидроусилителя. Зимой загустевшее масло увеличивает время прогрева системы, делая руль тяжелым в первые минуты движения. Летом, наоборот, чрезмерный нагрев может привести к разжижению масла и падению давления.</p>
+
+<p>Система охлаждения жидкости в Газели обычно пассивная — через стенки бачка и шлангов. Однако при интенсивной эксплуатации в жарком климате или при буксировке тяжелых прицепов рекомендуется устанавливать дополнительный радиатор охлаждения ГУР. Это продлит ресурс сальников и самого насоса.</p>
+
+<h2>FAQ: Часто задаваемые вопросы</
+
+<details>
+<summary>Можно ли эксплуатировать Газель с неисправным ГУР?</summary>
+<p>Эксплуатация возможна, но крайне нежелательна. Это приводит к быстрому износу рулевого механизма, повышенному риску ДТП из-за снижения управляемости и возможному заклиниванию насоса, что может оборвать ремень привода навесных агрегатов.</p>
+</details>
+
+<details>
+<summary>Какое масло лучше заливать в ГУР Газель Бизнес и Некст?</summary>
+<p>Оптимальным выбором являются жидкости стандарта <code>Dexron III</code> (красного цвета). Они обладают необходимыми присадками для защиты от коррозии и пенообразования. Использование масел для АКПП того же стандарта допускается производителем.</p>
+</details>
+
+<details>
+<summary>Почему гудит насос ГУР после замены жидкости?</summary>
+<p>Скорее всего, в системе остался воздух. Необходимо провести процедуру прокачки: покрутить рулем при работающем двигателе, проверить уровень и при необходимости долить. Если гул не проходит, возможно, был установлен некачественный насос или нарушена герметичность всасывающей магистрали.</p>
+</details>
+
+<details>
+<summary>Какой ресурс у насоса ГУР на Газели?</summary>
+<p>При своевременной замене жидкости и использовании качественных запчастей ресурс насоса составляет от 150 до 250 тысяч километров. Однако агрессивная езда и частые удары колес о бордюры могут сократить этот срок вдвое.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/s/st/stojki-stabilizatora-gazel-biznes-perednie.html" class="related-card">Стойки стабилизатора Газель Бизнес передние: выбор и замена</a></li><li><a href="/articles/s/se/sergi-na-ressory-gazel.html" class="related-card">Серьги на рессоры Газель: какие выбрать и как правильно установить</a></li><li><a href="/articles/r/ra/razval-na-gazel.html" class="related-card">Развал на Газель: углы установки колес и регулировка своими руками</a></li><li><a href="/articles/s/sk/skhema-rulevogo-upravleniya-gazel.html" class="related-card">Схема рулевого управления Газель: устройство, диагностика и ремонт</a></li><li><a href="/articles/b/ba/balka-perednyaya-sobol.html" class="related-card">Балка передняя Соболь: замена, ремонт и регулировка схождения</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/s/st/stojki-stabilizatora-gazel-biznes-perednie.html" class="related-bottom-card"><span class="related-bottom-title">Стойки стабилизатора Газель Бизнес передние: выбор и замена</span><span class="related-bottom-desc">Полный гид по передним стойкам стабилизатора для Газель Бизнес. Выбор производителя, симптомы износа</span></a><a href="/articles/s/se/sergi-na-ressory-gazel.html" class="related-bottom-card"><span class="related-bottom-title">Серьги на рессоры Газель: какие выбрать и как правильно установить</span><span class="related-bottom-desc">Полный гид по серьгам рессор ГАЗель. Выбор усиленных деталей, монтаж, обслуживание. Устранение скрип</span></a><a href="/articles/r/ra/razval-na-gazel.html" class="related-bottom-card"><span class="related-bottom-title">Развал на Газель: углы установки колес и регулировка своими руками</span><span class="related-bottom-desc">Профессиональный разбор регулировки развала-схождения на Газель. Нормы углов, симптомы неисправности</span></a><a href="/articles/s/sk/skhema-rulevogo-upravleniya-gazel.html" class="related-bottom-card"><span class="related-bottom-title">Схема рулевого управления Газель: устройство, диагностика и ремонт</span><span class="related-bottom-desc">Подробная схема рулевого управления Газель, устройство ГУР, частые неисправности, таблица регулирово</span></a><a href="/articles/b/ba/balka-perednyaya-sobol.html" class="related-bottom-card"><span class="related-bottom-title">Балка передняя Соболь: замена, ремонт и регулировка схождения</span><span class="related-bottom-desc">Полный гид по передней балке Газель и Соболь. Разбор симптомов износа, инструкция по замене шкворней</span></a><a href="/articles/r/re/ressora-zadnyaya-gazel-biznes-4-lista.html" class="related-bottom-card"><span class="related-bottom-title">Рессора задняя Газель Бизнес 4 листа: выбор, замена и усиление</span><span class="related-bottom-desc">Полный обзор задней рессоры Газель Бизнес на 4 листа. Разборка, артикулы, усиление, симптомы поломки</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🚐 Gazel-Help</div>
+                    <p class="footer-about">Полная база знаний по ремонту, обслуживанию и эксплуатации автомобилей Газель: от пошаговых инструкций и схем электрооборудования до обзоров двигателей и честных отзывов владельцев.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/кузов-и-кабина/">📁 Кузов И Кабина</a></li>
+<li><a href="/category/электрика-и-электроника/">📁 Электрика И Электроника</a></li>
+<li><a href="/category/двигатель/">📁 Двигатель</a></li>
+<li><a href="/category/сравнения-и-выбор/">📁 Сравнения И Выбор</a></li>
+<li><a href="/category/кпп-и-трансмиссия/">📁 Кпп И Трансмиссия</a></li>
+<li><a href="/category/подвеска-и-рулевое/">📁 Подвеска И Рулевое</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Gazel-Help. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

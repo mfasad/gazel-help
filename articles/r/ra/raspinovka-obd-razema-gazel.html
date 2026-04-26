@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🚐</text></svg>">
+    <title>Распиновка OBD разъема Газель: схемы, цоколевка, диагностика — Gazel-Help</title>
+    <meta name="description" content="Полная распиновка OBD разъема Газель (Бизнес, NEXT). Расположение, цвета проводов, протоколы ECU и советы по подключению сканера.">
+    <link rel="canonical" href="https://gazel-help.vercel.app/articles/r/ra/raspinovka-obd-razema-gazel.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Распиновка OBD разъема Газель: схемы, цоколевка, диагностика">
+    <meta property="og:description" content="Полная распиновка OBD разъема Газель (Бизнес, NEXT). Расположение, цвета проводов, протоколы ECU и советы по подключению сканера.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1777185859">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🚐</span>
+                <span>Gazel-Help</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/кузов-и-кабина/" class="nav-link">📁 Кузов И Кабина</a>
+<a href="/category/электрика-и-электроника/" class="nav-link">📁 Электрика И Электроника</a>
+<a href="/category/двигатель/" class="nav-link">📁 Двигатель</a>
+<a href="/category/сравнения-и-выбор/" class="nav-link">📁 Сравнения И Выбор</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/кузов-и-кабина/" class="dropdown-item">📁 Кузов И Кабина</a>
+<a href="/category/электрика-и-электроника/" class="dropdown-item">📁 Электрика И Электроника</a>
+<a href="/category/двигатель/" class="dropdown-item">📁 Двигатель</a>
+<a href="/category/сравнения-и-выбор/" class="dropdown-item">📁 Сравнения И Выбор</a>
+<a href="/category/кпп-и-трансмиссия/" class="dropdown-item">📁 Кпп И Трансмиссия</a>
+<a href="/category/подвеска-и-рулевое/" class="dropdown-item">📁 Подвеска И Рулевое</a>
+<a href="/category/мосты,-ступицы-и-колёса/" class="dropdown-item">📁 Мосты, Ступицы И Колёса</a>
+<a href="/category/соболь/" class="dropdown-item">📁 Соболь</a>
+<a href="/category/топливная-система-и-гбо/" class="dropdown-item">📁 Топливная Система И Гбо</a>
+<a href="/category/тормозная-система/" class="dropdown-item">📁 Тормозная Система</a>
+<a href="/category/оптика-и-свет/" class="dropdown-item">📁 Оптика И Свет</a>
+<a href="/category/панель-приборов-и-индикаторы/" class="dropdown-item">📁 Панель Приборов И Индикаторы</a>
+<a href="/category/салон-и-комфорт/" class="dropdown-item">📁 Салон И Комфорт</a>
+<a href="/category/система-охлаждения/" class="dropdown-item">📁 Система Охлаждения</a>
+<a href="/category/система-отопления-и-климат/" class="dropdown-item">📁 Система Отопления И Климат</a>
+<a href="/category/тюнинг-и-доработки/" class="dropdown-item">📁 Тюнинг И Доработки</a>
+<a href="/category/техжидкости-и-заправочные-объёмы/" class="dropdown-item">📁 Техжидкости И Заправочные Объёмы</a>
+<a href="/category/мультимедиа-и-допоборудование/" class="dropdown-item">📁 Мультимедиа И Допоборудование</a>
+<a href="/category/диагностика/" class="dropdown-item">📁 Диагностика</a>
+<a href="/category/рама-и-усиление/" class="dropdown-item">📁 Рама И Усиление</a>
+<a href="/category/выхлопная-система/" class="dropdown-item">📁 Выхлопная Система</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/диагностика/">Диагностика</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Распиновка OBD разъема Газель: схемы, цоколевка, диагностика</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Распиновка OBD разъема Газель: схемы, цоколевка и диагностика</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#расположение-диагностического-разъема-на-разных-моделях">Расположение диагностического разъема на разных моделях</a></li><li><a href="#стандартная-схема-распиновки-16-контактного-разъема-obd-ii">Стандартная схема распиновки 16-контактного разъема OBD-II</a></li><li><a href="#особенности-распиновки-для-эбу-умз-4216-и-bosch">Особенности распиновки для ЭБУ УМЗ-4216 и Bosch</a></li><li><a href="#диагностика-систем-euro-3-и-euro-4-отличия-в-схемах">Диагностика систем Euro-3 и Euro-4: отличия в схемах</a></li><li><a href="#изготовление-переходника-и-меры-предосторожности">Изготовление переходника и меры предосторожности</a></li><li><a href="#частые-проблемы-при-подключении-сканера">Частые проблемы при подключении сканера</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Владельцы коммерческого транспорта часто сталкиваются с необходимостью самостоятельной диагностики двигателя, но стандартный <strong>OBD разъем</strong> на Газелях может быть скрыт или выполнен нестандартно. Понимание схемы расположения контактов позволяет быстро подключить сканер, выявить ошибки и избежать costly визитов в сервис. В отличие от легковых автомобилей, где диагностический порт всегда под рукой, у <em>ГАЗель Бизнес</em> и <em>NEXT</em> инженеры часто прячут его за панелью приборов.</p>
+
+<p>Правильная <strong>распиновка</strong> критически важна при изготовлении переходников или подключении стационарных трекеров. Ошибка в определении линии <em>K-Line</em> или питания может привести к выходу из строя электронного блока управления (ЭБУ). В этом материале мы детально разберем схемы для различных модификаций двигателей и блоков управления.</p>
+
+<p>Стоит отметить, что с 2010 года внедрение экологических норм <strong>Евро-3</strong> и <strong>Евро-4</strong> изменило архитектуру бортовой сети. Если на старых моделях с ГБО часто встречались простые двухконтактные колодки, то современные системы требуют полноценного 16-пинового интерфейса. Разберемся, где искать этот разъем в вашем конкретном случае.</p>
+
+<h2 id="расположение-диагностического-разъема-на-разных-моделях">Расположение диагностического разъема на разных моделях</h2>
+
+<p>Поиск точки подключения — первый шаг, который ставит в тупик многих автомобилистов. На автомобилях <em>ГАЗель Бизнес</em> с двигателями УМЗ-4216 и Cummins ISF 2.8 диагностический порт чаще всего находится под торпедой. Вам потребуется снять декоративную пластиковую заглушку, расположенную справа от рулевой колонки, ближе к центральной консоли.</p>
+
+<p>На более современных версиях <em>ГАЗель NEXT</em> инженеры перенесли разъем в зону ног водителя, часто пряча его за съемной панелью слева от руля или под блоком предохранителей. В некоторых комплектациях доступ к <strong>диагностической колодке</strong> возможен только после частичного демонтажа обшивки, что требует аккуратности.</p>
+
+<blockquote>
+<p>⚠️ Внимание: При поиске разъема не используйте острые металлические предметы для ковыряния пластика, так как рядом проходят жгуты проводки подушек безопасности.</p>
+</blockquote>
+
+<p>Иногда владельцы устанавливают сигнализации или дополнительное оборудование, и штатное место может быть занято или перенесено. В таких случаях рекомендуется визуально осмотреть жгуты проводов, идущие от ЭБУ, чтобы найти ответвление с характерной колодкой.</p>
+
+<div class="poll-widget" id="poll-760286bd"><div class="poll-widget-question">📊 Где вы нашли разъем OBD на своей Газели?</div><div class="poll-widget-option" data-poll="760286bd" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Под торпедой справа</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="760286bd" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Под рулем слева</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="760286bd" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">В бардачке</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="760286bd" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">В моторном отсеке</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="стандартная-схема-распиновки-16-контактного-разъема-obd-ii">Стандартная схема распиновки 16-контактного разъема OBD-II</h2>
+
+<p>Несмотря на разнообразие модификаций, большинство современных Газелей используют стандартный 16-контактный разъем типа <em>OBD-II</em>. Однако назначение контактов может варьироваться в зависимости от протокола обмена данными, используемого конкретным <strong>ЭБУ</strong>. Для отечественных блоков чаще всего задействованы линии K-Line, тогда как импортные системы могут использовать CAN-шину.</p>
+
+<p>Ключевыми контактами для диагностики являются пины, отвечающие за питание и передачу данных. Неправильное подключение к линии <strong>CAN-High</strong> или <strong>CAN-Low</strong> без соответствующего терминирования может вызвать помехи в работе электроники автомобиля. Ниже приведена таблица, описывающая типовую распиновку для большинства блоков управления.</p>
+
+<table>
+<thead>
+<tr>
+<th>Пин</th>
+<th>Назначение</th>
+<th>Цвет провода (типичный)</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>J1850 Bus+</td>
+<td>Синий/Белый</td>
+<td>Линия передачи данных (редко используется)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Chassis Ground</td>
+<td>Черный</td>
+<td>Масса кузова</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Signal Ground</td>
+<td>Черный/Белый</td>
+<td>Масса сигнала</td>
+</tr>
+<tr>
+<td>7</td>
+<td>K-Line (ISO 9141-2)</td>
+<td>Оранжевый/Серый</td>
+<td>Основная линия диагностики (УМЗ, Bosch)</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Battery Power</td>
+<td>Красный</td>
+<td>Питание +12В от АКБ</td>
+</tr>
+</tbody>
+</table>
+
+<p>Важно понимать, что цвета проводов в таблице являются ориентировочными, так как автопроизводитель может менять поставщиков кабельной продукции. Для точной идентификации всегда используйте мультиметр в режиме прозвонки, проверяя continuity относительно массы или аккумулятора.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Используйте мультиметр для проверки напряжения на 16 пине перед подключением дорогостоящего сканера, чтобы избежать короткого замыкания.</p></div>
+
+<h2 id="особенности-распиновки-для-эбу-умз-4216-и-bosch">Особенности распиновки для ЭБУ УМЗ-4216 и Bosch</h2>
+
+<p>Двигатели Ульяновского моторного завода, оснащенные системой управления <em>Mikas 12.3</em> или <em>Mikas 12.3 CR</em>, имеют свои нюансы. Здесь основным каналом связи выступает K-Line (контакт 7), а CAN-шина может быть не активирована на диагностическом разъеме для стороннего оборудования. Это важно учитывать при выборе адаптера.</p>
+
+<p>Блоки управления <em>Bosch</em>, устанавливаемые на двигатели Cummins, часто используют более сложные протоколы. В некоторых случаях для доступа к полным параметрам требуется переключение сканера в режим <strong>J1939</strong> или использование специфических строк инициализации. Распиновка физически остается стандартной, но логический уровень сигналов может отличаться.</p>
+
+<p>При подключении к <strong>ЭБУ УМЗ</strong> следует обращать внимание на качество контакта в 7-м пине. Из-за окисления или плохого прижима сканер может не видеть блок, выдавая ошибку соединения. Зачистка контактов и использование контактной смазки часто решают проблему.</p>
+
+<blockquote>
+<p>⚠️ Внимание: При работе с ЭБУ Bosch не пытайтесь "пробовать" все пины наугад — это может привести к сгоранию интерфейса адаптера из-за разницы напряжений.</p>
+</blockquote>
+
+<p>Для успешной диагностики двигателей УМЗ часто требуется принудительная инициализация протокола в программе-сканере. Автоматический поиск может не сработать, если в системе висит ошибка связи или низкий заряд аккумулятора.</p>
+
+<details class="faq-item"><summary>Секреты подключения к Mikas 12.3</summary><div class="faq-answer"><p>Для стабильной связи с блоками Микас иногда требуется искусственно создать нагрузку на K-Line, подключив резистор сопротивлением 1 кОм между контактом 7 и контактом 16 (питание).</p></div></details>
+
+<h2 id="диагностика-систем-euro-3-и-euro-4-отличия-в-схемах">Диагностика систем Euro-3 и Euro-4: отличия в схемах</h2>
+
+<p>Переход на экологические стандарты <strong>Евро-3</strong> и <strong>Евро-4</strong> принес не только катализаторы, но и более сложную электронику. В системах Евро-3 часто встречается дублирование диагностических линий, а в Евро-4 практически повсеместно используется высокоскоростная <strong>CAN-шина</strong>.</p>
+
+<p>Для автомобилей Евро-4 характерно использование контактов 6 (CAN-High) и 14 (CAN-Low) в разъеме OBD. Если ваш сканер поддерживает только K-Line, он может не увидеть ошибки в системе AdBlue или сажевом фильтре, так как эти узлы общаются исключительно по CAN-протоколу.</p>
+
+<ul>
+<li>🔌 <strong>Евро-3:</strong> Основной упор на K-Line (пин 7), возможно наличие L-Line (пин 1).</li>
+<li>🔌 <strong>Евро-4:</strong> Обязательное наличие CAN-шины (пины 6 и 14), K-Line остается для совместимости.</li>
+<li>🔌 <strong>Евро-5:</strong> Полный переход на CAN, использование расширенных идентификаторов J1939.</li>
+</ul>
+
+<p>Владельцам техники Евро-4 необходимо помнить, что простое считывание кодов неисправностей может быть недостаточным. Требуется анализ параметров в реальном времени, таких как давление в рампе или степень открытия клапана EGR, что требует стабильного высокоскоростного соединения.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Для Газелей стандарта Евро-4 и выше критически важно наличие CAN-адаптера, старые K-Line сканеры будут бесполезны для глубокой диагностики.</p></div>
+
+<h2 id="изготовление-переходника-и-меры-предосторожности">Изготовление переходника и меры предосторожности</h2>
+
+<p>Часто возникает необходимость сделать выносной разъем или удлинитель, так как штатное расположение неудобно. Для этого потребуется качественный кабель с сечением не менее 0.5 мм², чтобы минимизировать падение напряжения. Тонкие провода могут привести к нестабильной связи при работе мощного сканера.</p>
+
+<p>При пайке контактов обязательно используйте термоусадку и изолируйте соединения. Вибрация, характерная для коммерческого транспорта, быстро разрушает скрутки и некачественную изоляцию, что приводит к коротким замыканиям. Надежность соединения — залог спокойствия.</p>
+
+<div class="checklist-block"><h4>☑️ Проверка самодельного переходника</h4><label class="check-item"><input type="checkbox"><span>Прозвонить все жилы на обрыв</span></label><label class="check-item"><input type="checkbox"><span>Проверить отсутствие замыкания между соседними пинами</span></label><label class="check-item"><input type="checkbox"><span>Убедиться в надежности фиксации колодки</span></label><label class="check-item"><input type="checkbox"><span>Тестовое подключение сканера на заглушенном авто</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<p>Особое внимание уделите контакту массы. Плохая "земля" — самая частая причина ошибок связи. Лучше всего подключать массу непосредственно к кузову автомобиля или использовать толстый провод, идущий от минусовой клеммы аккумулятора, если позволяет конструкция переходника.</p>
+
+<blockquote>
+<p>⚠️ Внимание: Категорически запрещается подключать самодельные переходники к работающему двигателю "на горячую", если вы не уверены в изоляции — искра может воспламенить пары топлива.</p>
+</blockquote>
+
+<h2 id="частые-проблемы-при-подключении-сканера">Частые проблемы при подключении сканера</h2>
+
+<p>Даже при правильной распиновке пользователи сталкиваются с трудностями. Одна из самых распространенных проблем — низкое напряжение в бортовой сети. Если аккумулятор разряжен, ЭБУ может не выходить на связь или сбрасывать соединение в процессе диагностики.</p>
+
+<p>Другая проблема — конфликт протоколов. Сканер может пытаться соединиться по CAN, когда блок ждет K-Line, и наоборот. В таких случаях помогает ручной выбор протокола в настройках программного обеспечения. Также стоит проверить предохранитель, отвечающий за питание диагностической колодки (обычно 5А или 10А).</p>
+
+<ul>
+<li>🚗 <strong>Нет питания:</strong> Проверьте предохранитель и целостность провода до 16 пина.</li>
+<li>🚗 <strong>Нет связи:</strong> Попробуйте сменить протокол или скорость соединения ( baudrate).</li>
+<li>🚗 <strong>Обрыв связи:</strong> Проверьте качество контакта в разъеме, возможно, разогнуты контакты.</li>
+</ul>
+
+<p>Иногда проблема кроется в самом адаптере. Дешевые китайские clones ELM327 часто некорректно работают с отечественными блоками управления, требуя переделки или замены чипа. Для профессиональной работы лучше использовать специализированные сканеры.</p>
+
+<details class="faq-item"><summary>Почему сканер видит машину, но не читает ошибки?</summary><div class="faq-answer"><p>Это может быть связано с несовместимостью версий ПО сканера и ЭБУ. Попробуйте обновить прошивку адаптера или использовать альтернативное ПО, например, OpenDiag для Android.</p></div></details>
+
+<details>
+<summary>Где точно находится разъем OBD на Газель Бизнес 2015 года?</summary>
+<p>На Газель Бизнес 2015 года разъем чаще всего расположен под панелью приборов со стороны пассажира, за декоративной заглушкой, либо под рулевой колонкой слева. Точное место зависит от комплектации и даты выпуска.</p>
+</details>
+
+<details>
+<summary>Какой протокол использует двигатель УМЗ-4216?</summary>
+<p>Двигатели УМЗ-4216 с блоками управления Микас 12.3 используют протокол K-Line (ISO 9141-2). Для более новых версий с Евро-4 может применяться CAN-шина, но базовая диагностика доступна и по K-Line.</p>
+</details>
+
+<details>
+<summary>Можно ли заряжать телефон от разъема OBD Газели?</summary>
+<p>Технически можно, подключившись к 16 пину (плюс) и 4 или 5 пину (минус), но делать это не рекомендуется. Скачки напряжения при работе стартера или генератора могут повредить телефон, а постоянный разряд повлияет на аккумулятор.</p>
+</details>
+
+<details>
+<summary>Почему сканер не видит блок управления?</summary>
+<p>Причин может быть несколько: неисправность самого сканера, обрыв провода K-Line, отсутствие питания на разъеме, или блок управления находится в спящем режиме. Также возможно несовпадение скорости обмена данными.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#расположение-диагностического-разъема-на-разных-моделях">Расположение диагностического разъема на разных моделях</a></li><li><a href="#стандартная-схема-распиновки-16-контактного-разъема-obd-ii">Стандартная схема распиновки 16-контактного разъема OBD-II</a></li><li><a href="#особенности-распиновки-для-эбу-умз-4216-и-bosch">Особенности распиновки для ЭБУ УМЗ-4216 и Bosch</a></li><li><a href="#диагностика-систем-euro-3-и-euro-4-отличия-в-схемах">Диагностика систем Euro-3 и Euro-4: отличия в схемах</a></li><li><a href="#изготовление-переходника-и-меры-предосторожности">Изготовление переходника и меры предосторожности</a></li><li><a href="#частые-проблемы-при-подключении-сканера">Частые проблемы при подключении сканера</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/p/pe/perekhodnik-dlya-diagnostiki-gazel-405.html" class="related-card">Переходник для диагностики Газель 405: выбор и схема</a></li><li><a href="/articles/g/go/gorit-chek-gazel-nekst.html" class="related-card">Горит чек Газель Некст: коды ошибок, причины и сброс</a></li><li><a href="/articles/d/di/diagnostika-gazel-406-inzhektor.html" class="related-card">Диагностика ГАЗель 406 инжектор: коды ошибок и методы проверки</a></li><li><a href="/articles/o/ob/obd-razem-gazel-nekst-gde-nakhoditsya.html" class="related-card">Обд разъем Газель Некст: где находится и как найти</a></li><li><a href="/articles/t/ti/tiir-299-gazel.html" class="related-card">ТИИР-299 Газель: Расшифровка кодов ошибок и диагностика</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/p/pe/perekhodnik-dlya-diagnostiki-gazel-405.html" class="related-bottom-card"><span class="related-bottom-title">Переходник для диагностики Газель 405: выбор и схема</span><span class="related-bottom-desc">Какой переходник выбрать для диагностики Газель 405? Обзор OBD2, GAZ-16 и K-Line адаптеров. Схемы ра</span></a><a href="/articles/g/go/gorit-chek-gazel-nekst.html" class="related-bottom-card"><span class="related-bottom-title">Горит чек Газель Некст: коды ошибок, причины и сброс</span><span class="related-bottom-desc">Горит Check Engine на Газель Next? Разбор причин, расшифровка кодов ошибок, пошаговая инструкция диа</span></a><a href="/articles/d/di/diagnostika-gazel-406-inzhektor.html" class="related-bottom-card"><span class="related-bottom-title">Диагностика ГАЗель 406 инжектор: коды ошибок и методы проверки</span><span class="related-bottom-desc">Полная инструкция по диагностике двигателя ЗМЗ-406 инжектор. Разбор кодов ошибок, проверка датчиков,</span></a><a href="/articles/o/ob/obd-razem-gazel-nekst-gde-nakhoditsya.html" class="related-bottom-card"><span class="related-bottom-title">Обд разъем Газель Некст: где находится и как найти</span><span class="related-bottom-desc">Точное расположение диагностического разъема OBD2 на Газель Некст (бензин, дизель). Фото схемы, расп</span></a><a href="/articles/t/ti/tiir-299-gazel.html" class="related-bottom-card"><span class="related-bottom-title">ТИИР-299 Газель: Расшифровка кодов ошибок и диагностика</span><span class="related-bottom-desc">Подробный разбор кода ТИИР-299 на Газели (Евро-3/Евро-4). Причины появления, диагностика форсунок, у</span></a><a href="/articles/d/di/diagnosticheskij-razem-gazel-next.html" class="related-bottom-card"><span class="related-bottom-title">Диагностический разъем Газель NEXT: где находится и как подключить</span><span class="related-bottom-desc">Полный гид по диагностическому разъему Газель NEXT. Расположение, распиновка OBD2, коды ошибок Cummi</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🚐 Gazel-Help</div>
+                    <p class="footer-about">Полная база знаний по ремонту, обслуживанию и эксплуатации автомобилей Газель: от пошаговых инструкций и схем электрооборудования до обзоров двигателей и честных отзывов владельцев.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/кузов-и-кабина/">📁 Кузов И Кабина</a></li>
+<li><a href="/category/электрика-и-электроника/">📁 Электрика И Электроника</a></li>
+<li><a href="/category/двигатель/">📁 Двигатель</a></li>
+<li><a href="/category/сравнения-и-выбор/">📁 Сравнения И Выбор</a></li>
+<li><a href="/category/кпп-и-трансмиссия/">📁 Кпп И Трансмиссия</a></li>
+<li><a href="/category/подвеска-и-рулевое/">📁 Подвеска И Рулевое</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Gazel-Help. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

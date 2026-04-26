@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🚐</text></svg>">
+    <title>Электросхема Газель NEXT: полная распиновка и поиск неисправностей — Gazel-Help</title>
+    <meta name="description" content="Подробная электросхема Газель Next (Бизнес, Cummins, Evo). Цветовая маркировка проводов, распиновка ЭБУ, датчиков и блоков управления. Диагностика проводки.">
+    <link rel="canonical" href="https://gazel-help.vercel.app/articles/e/el/elektroskhema-gazel-next.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Электросхема Газель NEXT: полная распиновка и поиск неисправностей">
+    <meta property="og:description" content="Подробная электросхема Газель Next (Бизнес, Cummins, Evo). Цветовая маркировка проводов, распиновка ЭБУ, датчиков и блоков управления. Диагностика проводки.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1777185859">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🚐</span>
+                <span>Gazel-Help</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/кузов-и-кабина/" class="nav-link">📁 Кузов И Кабина</a>
+<a href="/category/электрика-и-электроника/" class="nav-link">📁 Электрика И Электроника</a>
+<a href="/category/двигатель/" class="nav-link">📁 Двигатель</a>
+<a href="/category/сравнения-и-выбор/" class="nav-link">📁 Сравнения И Выбор</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/кузов-и-кабина/" class="dropdown-item">📁 Кузов И Кабина</a>
+<a href="/category/электрика-и-электроника/" class="dropdown-item">📁 Электрика И Электроника</a>
+<a href="/category/двигатель/" class="dropdown-item">📁 Двигатель</a>
+<a href="/category/сравнения-и-выбор/" class="dropdown-item">📁 Сравнения И Выбор</a>
+<a href="/category/кпп-и-трансмиссия/" class="dropdown-item">📁 Кпп И Трансмиссия</a>
+<a href="/category/подвеска-и-рулевое/" class="dropdown-item">📁 Подвеска И Рулевое</a>
+<a href="/category/мосты,-ступицы-и-колёса/" class="dropdown-item">📁 Мосты, Ступицы И Колёса</a>
+<a href="/category/соболь/" class="dropdown-item">📁 Соболь</a>
+<a href="/category/топливная-система-и-гбо/" class="dropdown-item">📁 Топливная Система И Гбо</a>
+<a href="/category/тормозная-система/" class="dropdown-item">📁 Тормозная Система</a>
+<a href="/category/оптика-и-свет/" class="dropdown-item">📁 Оптика И Свет</a>
+<a href="/category/панель-приборов-и-индикаторы/" class="dropdown-item">📁 Панель Приборов И Индикаторы</a>
+<a href="/category/салон-и-комфорт/" class="dropdown-item">📁 Салон И Комфорт</a>
+<a href="/category/система-охлаждения/" class="dropdown-item">📁 Система Охлаждения</a>
+<a href="/category/система-отопления-и-климат/" class="dropdown-item">📁 Система Отопления И Климат</a>
+<a href="/category/тюнинг-и-доработки/" class="dropdown-item">📁 Тюнинг И Доработки</a>
+<a href="/category/техжидкости-и-заправочные-объёмы/" class="dropdown-item">📁 Техжидкости И Заправочные Объёмы</a>
+<a href="/category/мультимедиа-и-допоборудование/" class="dropdown-item">📁 Мультимедиа И Допоборудование</a>
+<a href="/category/диагностика/" class="dropdown-item">📁 Диагностика</a>
+<a href="/category/рама-и-усиление/" class="dropdown-item">📁 Рама И Усиление</a>
+<a href="/category/выхлопная-система/" class="dropdown-item">📁 Выхлопная Система</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/электрика-и-электроника/">Электрика И Электроника</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Электросхема Газель NEXT: полная распиновка и поиск неисправностей</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Электросхема Газель NEXT: диагностика и ремонт проводки</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#общая-архитектура-бортовой-сети-газель-next">Общая архитектура бортовой сети Газель NEXT</a></li><li><a href="#система-управления-двигателем-cummins-и-evolution">Система управления двигателем Cummins и Evolution</a></li><li><a href="#диагностика-цепей-стартера-и-генератора">Диагностика цепей стартера и генератора</a></li><li><a href="#особенности-схемы-освещения-и-габаритных-огней">Особенности схемы освещения и габаритных огней</a></li><li><a href="#датчики-и-исполнительные-механизмы">Датчики и исполнительные механизмы</a></li><li><a href="#типичные-неисправности-проводки-и-их-устранение">Типичные неисправности проводки и их устранение</a></li><li><a href="#инструменты-для-работы-с-электросхемой">Инструменты для работы с электросхемой</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Владельцы коммерческого транспорта часто сталкиваются с ситуациями, когда <strong>электросхема Газель NEXT</strong> становится единственным инструментом для оперативного устранения неисправности. Современный автомобиль этой серии представляет собой сложную систему, где механические узлы тесно переплетены с электронным управлением. Любая ошибка в цепи может привести к остановке двигателя или отказу критически важных систем, что недопустимо в условиях интенсивной эксплуатации.</p>
+
+<p>Понимание принципов построения бортовой сети позволяет существенно сократить время простоя машины. В отличие от старых моделей, где электрика была относительно простой, в <em>Газель NEXT</em> внедрена мультиплексная система, требующая более глубокого подхода к диагностике. Знание расположения жгутов, цветовых кодов и логических связей между блоками — это ключ к успешному ремонту.</p>
+
+<p>В данной статье мы детально разберем архитектуру электрооборудования, уделив особое внимание двигателю <em>Cummins ISF 2.8</em> и <em>Evolution</em>. Мы рассмотрим не только теоретические аспекты, но и практические нюансы прозвонки цепей, а также типичные ошибки, допускаемые при самостоятельном вмешательстве в проводку грузового автомобиля.</p>
+
+<h2 id="общая-архитектура-бортовой-сети-газель-next">Общая архитектура бортовой сети Газель NEXT</h2>
+
+<p>Основой электрической системы является однопроводная схема, где роль второго проводника выполняет масса автомобиля. Однако в <em>Газель NEXT</em> реализована сложная система заземления, включающая множество точек подключения к кузову и раме. <strong>Центральный жгут проводов</strong> проходит вдоль рамы, соединяя переднюю панель приборов с задними фонарями и дополнительным оборудованием.</p>
+
+<blockquote>
+<p>⚠️ Внимание: При проведении сварочных работ на раме обязательно отключайте минусовую клемму аккумулятора и отсоединяйте разъемы от <strong>ЭБУ (Электронного Блока Управления)</strong>. Скачки напряжения могут мгновенно вывести из строя дорогостоящую электронику.</p>
+</blockquote>
+
+<p>Распределение питания осуществляется через монтажные блоки, расположенные в подкапотном пространстве и салоне. <strong>Предохранители</strong> и реле grouped по функциональному признаку, что упрощает поиск неисправности. Например, цепи управления двигателем отделены от цепей освещения и комфорта, что позволяет локализовать проблему быстрее.</p>
+
+<p>Важной особенностью является использование CAN-шины для передачи данных между основными узлами. <em>ECU</em> (двигатель), <em>ABS</em> и приборная панель обмениваются информацией в реальном времени. Нарушение целостности витой пары CAN-шины часто приводит к появлению ошибок, не связанных напрямую с поломкой конкретного датчика.</p>
+
+<h2 id="система-управления-двигателем-cummins-и-evolution">Система управления двигателем Cummins и Evolution</h2>
+
+<p>Сердцем электрической схемы двигателя является <strong>ЭБУ</strong> (в народе "мозги"), который обрабатывает сигналы от множества датчиков. Для моторов <em>Cummins ISF 2.8</em> и <em>Evo</em> применяются различные версии блоков управления, но принцип их подключения остается схожим. Критически важным является качество питания самого блока, так как даже кратковременный скачок напряжения может повредить внутренние компоненты.</p>
+
+<p>Ключевые датчики, такие как <strong>ДПКВ</strong> (датчик положения коленвала) и <strong>ДПРВ</strong> (датчик распредвала), формируют сигнал, без которого запуск двигателя невозможен. Проводка к этим элементам часто подвергается воздействию высоких температур и вибрации, что приводит к обрывам или коротким замыканиям.</p>
+
+<div class="poll-widget" id="poll-dea111b7"><div class="poll-widget-question">📊 Какой двигатель установлен на вашей Газель NEXT?</div><div class="poll-widget-option" data-poll="dea111b7" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Cummins ISF 2.8</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="dea111b7" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Evolution (УМЗ)</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="dea111b7" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Дизель Cummins ISF 3.8</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="dea111b7" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Бензин Evo 2.9</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<p>Ниже приведена таблица основных контактов разъема ЭБУ для типовых проверок:</p>
+
+<table>
+<thead>
+<tr>
+<th>Пин (Контакт)</th>
+<th>Функция</th>
+<th>Тип сигнала</th>
+<th>Нормальное значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Питание датчиков (+5В)</td>
+<td>Постоянный ток</td>
+<td>4.8 - 5.2 В</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Сигнал ДПКВ</td>
+<td>Импульсный</td>
+<td>0.6 - 1.5 В (амплитуда)</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Управление форсункой №1</td>
+<td>Импульсный (PWM)</td>
+<td>Зависит от нагрузки</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Масса ЭБУ</td>
+<td>Заземление</td>
+<td>< 0.1 Ом</td>
+</tr>
+</tbody>
+</table>
+
+<p>При диагностике цепи форсунок и катушек зажигания необходимо использовать осциллограф или специализированный тестер. Простая "прозвонка" мультметром не всегда показывает наличие неисправности, так как пробой может происходить только под нагрузкой.</p>
+
+<h2 id="диагностика-цепей-стартера-и-генератора">Диагностика цепей стартера и генератора</h2>
+
+<p>Проблемы с запуском двигателя часто кроются в силовых цепях стартера. В <em>Газель NEXT</strong> используется стартер с редуктором, потребляющий значительный ток. Основными точками отказа являются втягивающее реле и клеммы аккумулятора. Окисление контактов приводит к падению напряжения, из-за чего стартер не может провернуть коленвал.</p>
+
+<p>Генератор в этой модели оснащен встроенным регулятором напряжения и подключается через отдельный разъем. <strong>Сигнальный провод</strong> передает данные о заряде на приборную панель и ЭБУ. Если лампа заряда горит, но мультиметр показывает нормальное напряжение, проблема может быть в цепи индикации, а не в самом генераторе.</p>
+
+<div class="checklist-block"><h4>☑️ Диагностика цепи запуска</h4><label class="check-item"><input type="checkbox"><span>Проверить затяжку клемм АКБ</span></label><label class="check-item"><input type="checkbox"><span>Замерить падение напряжения на пуске</span></label><label class="check-item"><input type="checkbox"><span>Проверить управляющий провод втягивающего</span></label><label class="check-item"><input type="checkbox"><span>Осмотреть силовой провод от АКБ к стартеру</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<p>Частой ошибкой является игнирование состояния "массовых" проводов двигателя. Если <strong>массовый провод</em> от двигателя к раме окислен или оборван, ток пойдет через тросы КПП и кузов, что приведет к перегреву и выходу из строя подшипников или электрики.</p>
+
+<h2 id="особенности-схемы-освещения-и-габаритных-огней">Особенности схемы освещения и габаритных огней</h2>
+
+<p>Схема внешнего освещения <em>Газель NEXT</em> включает в себя блок управления светом, который контролирует габариты, ближний и дальний свет. Использование светодиодной оптики в некоторых комплектациях требует установки дополнительных резисторов или блоков управления, чтобы система не выдавала ошибку о перегоревшей лампе.</p>
+
+<p>Проводка задних фонарей часто страдает от попадания влаги внутрь плафонов. Вода вызывает коррозию контактов и замыкание дорожек. Рекомендуется регулярно обрабатывать разъемы <strong>контактной смазкой</strong> и проверять целостность резиновых уплотнителей.</p>
+
+<p>Если не горят габариты, первым делом проверяется предохранитель и реле, расположенные в монтажном блоке салона. Далее следует проверить выключатель света на рулевой колонке, так как его контакты также подвержены износу.</p>
+
+<h2 id="датчики-и-исполнительные-механизмы">Датчики и исполнительные механизмы</h2>
+
+<p>Современная <em>Газель</em> оснащена множеством датчиков, обеспечивающих экологичность и экономичность работы двигателя. Датчик положения педали акселератора (ДППА), датчик температуры охлаждающей жидкости (ДТОЖ) и датчик давления масла — все они передают сигналы в ЭБУ.</p>
+
+<blockquote>
+<p>⚠️ Внимание: При замене датчиков используйте только оригинальные запчасти или качественные аналоги. Дешевые датчики часто имеют нелинейную характеристику, что приводит к некорректной работе двигателя и повышенному расходу топлива.</p>
+</blockquote>
+
+<p>Исполнительные механизмы, такие как клапан рециркуляции ОГ (EGR) и регулятор холостого хода, также управляются электрически. Загрязнение этих узлов может приводить к увеличению тока потребления или заклиниванию, что ЭБУ воспринимает как электрическую неисправность.</p>
+
+<details class="faq-item"><summary>Секреты проверки ДМРВ</summary><div class="faq-answer"><p>Для проверки датчика массового расхода воздуха на холостом ходу напряжение должно быть в пределах 0.9-1.0 Вольта. Если показания выше 1.2 В, датчик требует замены или чистки, даже если ошибок в системе нет.</p></div></details>
+
+<h2 id="типичные-неисправности-проводки-и-их-устранение">Типичные неисправности проводки и их устранение</h2>
+
+<p>Вибрация и трение о кузов — главные враги проводки на коммерческом транспорте. Жгуты проводов, проходящие вдоль рамы, часто перетираются, что приводит к короткому замыканию на массу. Особенно уязвимы места прохождения жгута через металлические перегородки.</p>
+
+<p>Окисление контактов в разъемах — вторая по частоте проблема. Вода и реагенты с дорог проникают внутрь разъемов, вызывая коррозию. Для устранения необходимо зачищать контакты, использовать <strong>спрей для очистки контактов</strong> и восстанавливать герметичность соединения.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Используйте термоусадку с клеевым слоем при ремонте проводки. Обычная изолента со временем сползает и теряет свойства, а клей внутри термоусадки гарантирует полную герметичность соединения.</p></div>
+
+<p>При поиске обрыва цепи эффективно использовать метод покачивания жгута при работающем двигателе. Если обороты двигателя меняются или загорается лампа ошибки, значит, в этом месте есть нестабильный контакт.</p>
+
+<h2 id="инструменты-для-работы-с-электросхемой">Инструменты для работы с электросхемой</h2>
+
+<p>Для качественного ремонта недостаточно иметь только отвертку. Необходим набор щупов, мультиметр с функцией прозвонки и, желательно, осциллограф для анализа сложных сигналов. Также полезно иметь набор для ремонта разъемов, чтобы менять сгоревшие пины, а не весь жгут целиком.</p>
+
+<p>Работа с <strong>электросхемой</strong> требует внимательности. Всегда сверяйте цвета проводов с актуальной схемой для вашей модификации, так как в разных годах выпуска <em>Газель NEXT</em> цветовая маркировка может отличаться.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Главный принцип диагностики — от простого к сложному. Всегда начинайте с проверки предохранителей, массы и целостности разъемов, прежде чем грешить на дорогие блоки управления.</p></div>
+
+<details>
+<summary>Где найти точную электросхему для моей Газель NEXT?</summary>
+<p>Точная схема находится в руководстве по ремонту и эксплуатации для конкретной модели и года выпуска. Также можно воспользоваться официальными дилерскими программами или специализированными форумами, где выкладывают сканы оригинальных мануалов. Не используйте схемы от ГАЗель Бизнес для NEXT, они имеют существенные отличия.</p>
+</details>
+
+<details>
+<summary>Можно ли установить сигнализацию самостоятельно?</summary>
+<p>Теоретически можно, но это требует глубокого знания схемы блокировки двигателя и подключения к CAN-шине. Ошибки при подключении могут привести к блокировке запуска двигателя или выходу из строя ЭБУ. Рекомендуется доверять это профессионалам.</p>
+</details>
+
+<details>
+<summary>Почему горит лампа Check Engine после мойки?</summary>
+<p>Попадание воды на разъемы датчиков или в воздухозаборник может вызвать кратковременное замыкание или некорректные показания. Обычно проблема решается просушкой двигателя и сбросом ошибок. Если лампа не гаснет после нескольких циклов запуска, требуется диагностика сканером.</p>
+</details>
+
+<details>
+<summary>Как проверить целостность CAN-шины?</summary>
+<p>Необходимо замерить сопротивление между проводами CAN-High и CAN-Low при выключенном зажигании. Оно должно составлять около 60 Ом (суммарное сопротивление двух оконечных резисторов). Также можно проверить напряжение на проводах относительно массы при включенном зажигании.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#общая-архитектура-бортовой-сети-газель-next">Общая архитектура бортовой сети Газель NEXT</a></li><li><a href="#система-управления-двигателем-cummins-и-evolution">Система управления двигателем Cummins и Evolution</a></li><li><a href="#диагностика-цепей-стартера-и-генератора">Диагностика цепей стартера и генератора</a></li><li><a href="#особенности-схемы-освещения-и-габаритных-огней">Особенности схемы освещения и габаритных огней</a></li><li><a href="#датчики-и-исполнительные-механизмы">Датчики и исполнительные механизмы</a></li><li><a href="#типичные-неисправности-проводки-и-их-устранение">Типичные неисправности проводки и их устранение</a></li><li><a href="#инструменты-для-работы-с-электросхемой">Инструменты для работы с электросхемой</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/p/pr/predokhraniteli-gazel-nekst-gde-nakhoditsya.html" class="related-card">Предохранители Газель Next: где находятся, схемы и замена</a></li><li><a href="/articles/k/ka/kak-pomenyat-zamok-zazhiganiya-gazel-nekst.html" class="related-card">Замена замка зажигания Газель NEXT: пошаговая инструкция</a></li><li><a href="/articles/d/da/datchik-faz-vysokij-uroven-signala-gazel.html" class="related-card">Датчик фаз Газель: Высокий уровень сигнала и ремонт</a></li><li><a href="/articles/r/re/rele-povorotnikov-gazel-biznes-raspolozhenie.html" class="related-card">Реле поворотников Газель Бизнес: расположение, замена и схема</a></li><li><a href="/articles/s/sk/skhema-signala-gazel-biznes.html" class="related-card">Схема сигнала ГАЗель Бизнес: диагностика и ремонт кнопки</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/p/pr/predokhraniteli-gazel-nekst-gde-nakhoditsya.html" class="related-bottom-card"><span class="related-bottom-title">Предохранители Газель Next: где находятся, схемы и замена</span><span class="related-bottom-desc">Полный гайд по расположению предохранителей Газель Некст. Схемы блоков в кабине и под капотом, табли</span></a><a href="/articles/k/ka/kak-pomenyat-zamok-zazhiganiya-gazel-nekst.html" class="related-bottom-card"><span class="related-bottom-title">Замена замка зажигания Газель NEXT: пошаговая инструкция</span><span class="related-bottom-desc">Как поменять замок зажигания на Газель Некст своими руками. Разбор рулевой колонки, схема контактов </span></a><a href="/articles/d/da/datchik-faz-vysokij-uroven-signala-gazel.html" class="related-bottom-card"><span class="related-bottom-title">Датчик фаз Газель: Высокий уровень сигнала и ремонт</span><span class="related-bottom-desc">Ошибка высокого уровня сигнала датчика фаз на Газели. Причины, диагностика мультиметром, замена ДФ и</span></a><a href="/articles/r/re/rele-povorotnikov-gazel-biznes-raspolozhenie.html" class="related-bottom-card"><span class="related-bottom-title">Реле поворотников Газель Бизнес: расположение, замена и схема</span><span class="related-bottom-desc">Подробно описываем, где находится реле поворотов Газель Бизнес. Инструкция по замене, схема подключе</span></a><a href="/articles/s/sk/skhema-signala-gazel-biznes.html" class="related-bottom-card"><span class="related-bottom-title">Схема сигнала ГАЗель Бизнес: диагностика и ремонт кнопки</span><span class="related-bottom-desc">Подробная схема сигнала ГАЗель Бизнес. Диагностика неисправностей, распиновка кнопки руля, проверка </span></a><a href="/articles/r/ra/raspinovka-pereklyuchatelya-povorotov-gazel-nekst.html" class="related-bottom-card"><span class="related-bottom-title">Распиновка переключателя поворотов Газель Некст: схемы и ремонт</span><span class="related-bottom-desc">Подробная распиновка подрулевого переключателя Газель Некст. Схемы контактов, коды ошибок, диагности</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🚐 Gazel-Help</div>
+                    <p class="footer-about">Полная база знаний по ремонту, обслуживанию и эксплуатации автомобилей Газель: от пошаговых инструкций и схем электрооборудования до обзоров двигателей и честных отзывов владельцев.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/кузов-и-кабина/">📁 Кузов И Кабина</a></li>
+<li><a href="/category/электрика-и-электроника/">📁 Электрика И Электроника</a></li>
+<li><a href="/category/двигатель/">📁 Двигатель</a></li>
+<li><a href="/category/сравнения-и-выбор/">📁 Сравнения И Выбор</a></li>
+<li><a href="/category/кпп-и-трансмиссия/">📁 Кпп И Трансмиссия</a></li>
+<li><a href="/category/подвеска-и-рулевое/">📁 Подвеска И Рулевое</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Gazel-Help. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

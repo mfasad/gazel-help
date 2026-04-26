@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🚐</text></svg>">
+    <title>Электросхема АБС Газель Некст: поиск неисправностей и коды ошибок — Gazel-Help</title>
+    <meta name="description" content="Подробная электросхема ABS Газель Next. Разбор распиновки датчиков, модуля ECU и гидроблока. Таблица кодов ошибок и советы по диагностике своими руками.">
+    <link rel="canonical" href="https://gazel-help.vercel.app/articles/e/el/elektroskhema-abs-gazel-nekst.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Электросхема АБС Газель Некст: поиск неисправностей и коды ошибок">
+    <meta property="og:description" content="Подробная электросхема ABS Газель Next. Разбор распиновки датчиков, модуля ECU и гидроблока. Таблица кодов ошибок и советы по диагностике своими руками.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1777185859">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🚐</span>
+                <span>Gazel-Help</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/кузов-и-кабина/" class="nav-link">📁 Кузов И Кабина</a>
+<a href="/category/электрика-и-электроника/" class="nav-link">📁 Электрика И Электроника</a>
+<a href="/category/двигатель/" class="nav-link">📁 Двигатель</a>
+<a href="/category/сравнения-и-выбор/" class="nav-link">📁 Сравнения И Выбор</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/кузов-и-кабина/" class="dropdown-item">📁 Кузов И Кабина</a>
+<a href="/category/электрика-и-электроника/" class="dropdown-item">📁 Электрика И Электроника</a>
+<a href="/category/двигатель/" class="dropdown-item">📁 Двигатель</a>
+<a href="/category/сравнения-и-выбор/" class="dropdown-item">📁 Сравнения И Выбор</a>
+<a href="/category/кпп-и-трансмиссия/" class="dropdown-item">📁 Кпп И Трансмиссия</a>
+<a href="/category/подвеска-и-рулевое/" class="dropdown-item">📁 Подвеска И Рулевое</a>
+<a href="/category/мосты,-ступицы-и-колёса/" class="dropdown-item">📁 Мосты, Ступицы И Колёса</a>
+<a href="/category/соболь/" class="dropdown-item">📁 Соболь</a>
+<a href="/category/топливная-система-и-гбо/" class="dropdown-item">📁 Топливная Система И Гбо</a>
+<a href="/category/тормозная-система/" class="dropdown-item">📁 Тормозная Система</a>
+<a href="/category/оптика-и-свет/" class="dropdown-item">📁 Оптика И Свет</a>
+<a href="/category/панель-приборов-и-индикаторы/" class="dropdown-item">📁 Панель Приборов И Индикаторы</a>
+<a href="/category/салон-и-комфорт/" class="dropdown-item">📁 Салон И Комфорт</a>
+<a href="/category/система-охлаждения/" class="dropdown-item">📁 Система Охлаждения</a>
+<a href="/category/система-отопления-и-климат/" class="dropdown-item">📁 Система Отопления И Климат</a>
+<a href="/category/тюнинг-и-доработки/" class="dropdown-item">📁 Тюнинг И Доработки</a>
+<a href="/category/техжидкости-и-заправочные-объёмы/" class="dropdown-item">📁 Техжидкости И Заправочные Объёмы</a>
+<a href="/category/мультимедиа-и-допоборудование/" class="dropdown-item">📁 Мультимедиа И Допоборудование</a>
+<a href="/category/диагностика/" class="dropdown-item">📁 Диагностика</a>
+<a href="/category/рама-и-усиление/" class="dropdown-item">📁 Рама И Усиление</a>
+<a href="/category/выхлопная-система/" class="dropdown-item">📁 Выхлопная Система</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/тормозная-система/">Тормозная Система</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Электросхема АБС Газель Некст: поиск неисправностей и коды ошибок</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Электросхема АБС Газель Некст: диагностика и распиновка</h1>
+                    
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Владельцы коммерческого транспорта часто сталкиваются с необходимостью самостоятельного поиска причин загорания лампочки ABS на панели приборов. Для <em>Газель Next</em> это особенно актуально, так как автомобиль эксплуатируется в жестких условиях, а простои из-за неисправности тормозной системы недопустимы. Понимание принципов работы антиблокировочной системы и умение читать электрические схемы позволяет быстро локализовать проблему, будь то обрыв проводки или выход из строя дорогостоящего модулятора.</p>
+
+<p>Современная <strong>электросхема АБС Газель Некст</strong> построена на базе контроллера WABCO, который управляет работой четырех датчиков скорости вращения колес и электромагнитных клапанов гидравлического блока. Знание цветовой маркировки проводов и расположения разъемов в жгуте — ключ к успешному ремонту без замены узлов в сборе. В этой статье мы детально разберем архитектуру проводки, методы прозвонки цепи и типичные ошибки, с которыми сталкиваются механики при обслуживании этих автомобилей.</p>
+
+<h2>Принцип работы и архитектура системы ABS на Газель Next</
+
+<p>Антиблокировочная система на семействе <em>ГАЗель Next</em> представляет собой комплекс электронных и гидравлических устройств, предотвращающих блокировку колес при экстренном торможении. Основным управляющим элементом является электронный блок управления (ECU), который непрерывно считывает сигналы с индуктивных датчиков, расположенных на ступицах каждого колеса. На основе разницы скоростей вращения контроллер принимает решение о кратковременном сбросе давления в тормозном контуре через клапаны гидромодулятора.</p>
+
+<p>Важно отметить, что <strong>электрическая схема</strong> системы включает в себя не только силовые цепи питания клапанов, но и высокочастотные сигнальные линии, чувствительные к наводкам. Любое повреждение изоляции или окисление контактов в разъемах может привести к искажению сигнала, что воспринимается блоком управления как критическая ошибка. Система самодиагностики постоянно мониторит целостность цепей, и при обнаружении несоответствий активирует аварийный режим работы.</p>
+
+<p>Конструктивно гидравлический блок и ЭБУ часто объединены в единый узел, установленный на лонжероне рамы. Это решение снижает количество внешних соединений, но требует особой аккуратности при замене. При диагностике необходимо учитывать, что питание на блок приходит через отдельный предохранитель, а запуск системы происходит сразу после включения зажигания, до запуска двигателя.</p>
+
+<details class="faq-item"><summary>Технические характеристики системы WABCO на Газель Некст</summary><div class="faq-answer"><p>Система использует 4-канальную схему управления с индивидуальным регулированием давления для каждого колеса. Рабочее давление в системе может достигать 12-15 бар, а ток потребления электромагнитных клапанов в момент срабатывания составляет до 15-20 Ампер, что требует исправной проводки большого сечения.</p></div></details>
+
+<h2>Расположение элементов и особенности проводки</
+
+<p>Поиск элементов системы ABS на <em>Газель Некст</em> не вызывает сложностей, если знать основные точки монтажа. Гидравлический агрегат с интегрированным блоком управления расположен на левом лонжероне рамы, в районе передней оси, что облегчает доступ для визуального осмотра. Датчики скорости вмонтированы в поворотные кулаки передней оси и в корпусы задних редукторов (или барабанные механизмы, в зависимости от модификации).</p>
+
+<p>Жгуты проводов, идущие к датчикам, выполнены в гофрированной трубке для защиты от механических повреждений и агрессивной среды. Особое внимание следует уделить местам выхода проводов из поворотных кулаков, где из-за постоянной работы рулевого управления изоляция перетирается в первую очередь. <strong>Распиновка разъемов</strong> датчиков стандартна для платформы ГАЗ, но цветовая маркировка может отличаться в зависимости от года выпуска автомобиля.</p>
+
+<blockquote>⚠️ Внимание: При замене жгутов или датчиков категорически запрещена скрутка проводов с последующей изоляцией изолентой. Вибрации, характерные для грузового шасси, быстро разрушат такое соединение, а попадание влаги приведет к электрохимической коррозии и росту сопротивления цепи.</blockquote>
+
+<p>Разъемы подключения имеют герметичное исполнение, но со временем резиновые уплотнители теряют эластичность. Перед разъединением контактов рекомендуется обработать зону стыка проникающей смазкой (WD-40 или аналогом), чтобы избежать поломки пластиковых фиксаторов. Внутри колодок часто наблюдается окисление контактов, что является частой причиной плавающих неисправностей.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Используйте диэлектрическую смазку при сборке разъемов ABS. Нанесите тонкий слой на контакты и резиновый уплотнитель — это предотвратит окисление и облегчит future разборку узла.</p></div>
+
+<h2>Детальная распиновка датчиков и модулятора</
+
+<p>Для проведения качественной диагностики мастеру необходимо точно знать, какой провод за что отвечает. <strong>Электросхема ABS</strong> Газель Некст подразумевает использование четырехпроводной схемы для каждого датчика (две жилы на сигнальную катушку и две на экран/защиту, хотя часто используется двухпроводная схема с экранированием). Гидромодулятор управляется через мощный многопиновый разъем, куда приходят сигналы от педали тормоза и идут команды на клапаны.</p>
+
+<ul>
+<li>🔴 <strong>Питание (+12В):</strong> Толстый провод, идущий от главного реле или непосредственно от АКБ через предохранитель (обычно 30А или 40А).</li>
+<li>⚫ <strong>Масса (GND):</strong> Провод черного или коричневого цвета, подключенный к кузову или блоку управления.</li>
+<li>🔵 <strong>Сигнал датчика (+):</strong> Сигнальный провод, передающий синусоидальный импульс от гребенки ШИМ-датчика.</li>
+<li>🟢 <strong>Сигнал датчика (-):</strong> Второй сигнальный провод, образующий дифференциальную пару для снижения помех.</li>
+</ul>
+
+<p>При прозвонке цепи важно отключать разъемы с обеих сторон. Сопротивление исправного индуктивного датчика должно находиться в пределах 800–1500 Ом (значение может варьироваться в зависимости от производителя компонента — Bosch, WABCO или Continental). Если мультиметр показывает обрыв (бесконечность) или короткое замыкание (близкое к нулю), элемент подлежит замене. Также следует проверить отсутствие замыкания сигнальных проводов на массу.</p>
+
+<div class="poll-widget" id="poll-5642e620"><div class="poll-widget-question">📊 Какой тип неисправности ABS вы встречали чаще всего?</div><div class="poll-widget-option" data-poll="5642e620" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Обрыв провода датчика</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="5642e620" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Неисправность гидроблока</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="5642e620" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Сбитая гребенка на ступице</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="5642e620" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Проблема с блоком управления ECU</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2>Диагностика неисправностей и коды ошибок</
+
+<p>Современные автомобили <em>Газель Next</em> оснащены диагностическим разъемом OBD-II, через который можно считать коды неисправностей системы ABS. Для этого используется специализированный сканер или адаптер ELM327 с поддержкой протоколов грузовых автомобилей. Однако, даже без сканера, по характеру мигания индикатора на панели приборов можно предположить характер поломки, хотя точный код дает сканер.</p>
+
+<p>Типичные ошибки, которые выдает система, включают в себя: "Обрыв цепи датчика", "Короткое замыкание на массу", "Неверный сигнал датчика" или "Неисправность клапана сброса давления". Часто ошибка может быть вызвана не поломкой самого датчика, а загрязнением его торца металлической стружкой или слишком большим зазором между датчиком и гребенкой. <strong>Зазор</strong> обычно регулируется конструктивно и не требует настройки, но биение ступичного подшипника может его нарушать.</p>
+
+<p>При диагностике гидроблока проверяется сопротивление обмоток электромагнитных клапанов. Нормальные значения находятся в диапазоне 2–10 Ом в зависимости от типа клапана (впускной или выпускной). Если сопротивление значительно отличается от номинала, это указывает на межвитковое замыкание или обрыв внутри соленоида. В таких случаях чаще всего требуется замена гидравлического блока в сборе или профессиональный ремонт специализированной мастерской.</p>
+
+<div class="checklist-block"><h4>☑️ Чек-лист первичной диагностики ABS</h4><label class="check-item"><input type="checkbox"><span>Визуальный осмотр целостности жгутов</span></label><label class="check-item"><input type="checkbox"><span>Проверка уровня тормозной жидкости</span></label><label class="check-item"><input type="checkbox"><span>Считывание кодов ошибок сканером</span></label><label class="check-item"><input type="checkbox"><span>Прозвонка датчиков мультиметром</span></label><label class="check-item"><input type="checkbox"><span>Проверка напряжения на разъеме ECU</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 5</div></div>
+
+<h2>Таблица типовых неисправностей и методов устранения</
+
+<p>Для систематизации процесса поиска дефектов удобно использовать сводную таблицу. Она позволяет быстро сопоставить симптомы, коды ошибок и необходимые действия. Помните, что перед любой глубокой диагностикой электрики необходимо убедиться в исправности механической части тормозной системы.</p>
+
+<table>
+<thead>
+<tr>
+<th>Код / Симптом</th>
+<th>Вероятная причина</th>
+<th>Метод проверки</th>
+<th>Способ устранения</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Обрыв цепи датчика</td>
+<td>Повреждение провода, окисление контакта</td>
+<td>Прозвонка мультиметром, визуальный осмотр</td>
+<td>Замена жгута или датчика, чистка контактов</td>
+</tr>
+<tr>
+<td>Неверный сигнал</td>
+<td>Загрязнение, биение ступицы, повреждение гребенки</td>
+<td>Осмотр гребенки, проверка биения ступицы</td>
+<td>Очистка, замена ступичного подшипника или гребенки</td>
+</tr>
+<tr>
+<td>Ошибка клапана</td>
+<td>Обрыв обмотки соленоида, неисправность ЭБУ</td>
+<td>Замер сопротивления обмотки клапана</td>
+<td>Замена гидроблока или ремонт клапанной группы</td>
+</tr>
+<tr>
+<td>Низкое напряжение</td>
+<td>Разряженный АКБ, плохой контакт массы</td>
+<td>Замер напряжения бортсети под нагрузкой</td>
+<td>Зарядка АКБ, зачистка клемм и массы кузова</td>
+</tr>
+</tbody>
+</table>
+
+<p>Отдельного внимания заслуживает ситуация, когда горит лампа ABS, но система работает intermittently (периодически). Это часто указывает на "плавающий" дефект проводки, который проявляется только при определенной вибрации или влажности. В таких случаях полезно провести тест, покачивая жгуты проводов руками во время работы двигателя и наблюдая за реакцией сканера или индикаторов.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>90% проблем с ABS на Газель Некст связаны не с выходом из строя электроники, а с механическим повреждением проводки или загрязнением датчиков.</p></div>
+
+<h2>Замена датчиков и ремонт проводки</
+
+<p>Процесс замены датчика скорости вращения колеса на <em>Газель Next</em> технически прост, но требует аккуратности. На передней оси датчик обычно установлен в поворотном кулаке и фиксируется одним болтом. Перед извлечением необходимо очистить посадочное место от грязи, чтобы при монтаже нового элемента не повредить его корпус.</p>
+
+<ol>
+<li>Поднимите автомобиль домкратом и снимите колесо для доступа к суппорту и поворотному кулаку.</li>
+<li>Отсоедините разъем датчика, который находится на лонжероне или в подкапотном пространстве.</li>
+<li>Выкрутите крепежный болт датчика и аккуратно извлеките его из посадочного отверстия.</li>
+<li>Установите новый датчик, смазав уплотнительное кольцо тонким слоем тормозной жидкости или спецсмазкой.</li>
+</ol>
+
+<p>При ремонте проводки используйте только медные провода сечением не менее 0.75 мм² для сигнальных линий и 1.5–2.5 мм² для силовых цепей. Соединение выполняйте методом пайки с последующей термоусадкой, обеспечивающей герметичность. <strong>Скрутки</strong> в условиях вибрации грузовика долго не живут и являются источником проблем. После ремонта обязательно проведите тестовую поездку для проверки отсутствия ошибок.</p>
+
+<blockquote>⚠️ Внимание: Не пытайтесь выпрямить погнутый корпус датчика или восстановить его работоспособность нагревом. Внутренняя катушка и магнит очень чувствительны к перегреву и механическим деформациям.</blockquote>
+
+<h2>Часто задаваемые вопросы (FAQ)</
+
+<details>
+<summary>Можно ли ездить, если горит лампа ABS на Газель Некст?</summary>
+<p>Да, автомобиль сохранит штатную тормозную эффективность, но функция антиблокировки работать не будет. При экстренном торможении колеса могут уходить в блокировку, что увеличивает тормозной путь на скользкой дороге. Рекомендуется не затягивать с ремонтом.</p>
+</details>
+
+<details>
+<summary>Какой зазор должен быть между датчиком ABS и гребенкой?</summary>
+<p>На Газель Некст зазор, как правило, является нерегулируемым и задается конструкцией посадочного места (обычно 0.3–1.0 мм). Важнее состояние самой гребенки: отсутствие сколов, коррозии и налипания металлической стружки.</p>
+</details>
+
+<details>
+<summary>Почему сканер не видит блок ABS?</summary>
+<p>Это может быть вызвано обрывом диагностической линии (K-Line или CAN), неисправностью самого блока управления или отсутствием питания на диагностическом разъеме. Проверьте предохранители и целостность проводов до ЭБУ.</p>
+</details>
+
+<details>
+<summary>Можно ли промыть датчик ABS очистителем?</summary>
+<p>Да, использовать очиститель тормозов или карбюратора можно, но осторожно. Не допускайте попадания агрессивной химии на пластиковый разъем и внутренности датчика, если его корпус поврежден. Лучше протирать мягкой ветошью.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/r/re/regulirovka-kolodok-gazel-3302-zadnikh.html" class="related-card">Регулировка задних колодок Газель 3302: инструкция и нормы</a></li><li><a href="/articles/p/pr/prokachka-tormozov-sobol-s-abs.html" class="related-card">Прокачка тормозов Соболь с АБС: пошаговая инструкция</a></li><li><a href="/articles/g/ga/gazel-nekst-zamena-perednikh-kolodok.html" class="related-card">Замена передних колодок Газель Next: полная инструкция</a></li><li><a href="/articles/t/ts/tsilindr-zadnij-tormoznoj-gazel-nekst.html" class="related-card">Задний тормозной цилиндр Газель Некст: выбор, замена, прокачка</a></li><li><a href="/articles/s/so/sobol-zamena-zadnikh-tormoznykh-kolodok.html" class="related-card">Замена задних тормозных колодок Соболь: пошаговая инструкция</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/r/re/regulirovka-kolodok-gazel-3302-zadnikh.html" class="related-bottom-card"><span class="related-bottom-title">Регулировка задних колодок Газель 3302: инструкция и нормы</span><span class="related-bottom-desc">Полная инструкция по регулировке задних тормозных колодок Газель 3302. Нормы зазоров, устранение сту</span></a><a href="/articles/p/pr/prokachka-tormozov-sobol-s-abs.html" class="related-bottom-card"><span class="related-bottom-title">Прокачка тормозов Соболь с АБС: пошаговая инструкция</span><span class="related-bottom-desc">Правильная прокачка тормозной системы Газель Соболь с ABS. Удаление воздуха, проверка уровня жидкост</span></a><a href="/articles/g/ga/gazel-nekst-zamena-perednikh-kolodok.html" class="related-bottom-card"><span class="related-bottom-title">Замена передних колодок Газель Next: полная инструкция</span><span class="related-bottom-desc">Как заменить передние тормозные колодки на Газель Некст. Артикул запчастей, моменты затяжки, пошагов</span></a><a href="/articles/t/ts/tsilindr-zadnij-tormoznoj-gazel-nekst.html" class="related-bottom-card"><span class="related-bottom-title">Задний тормозной цилиндр Газель Некст: выбор, замена, прокачка</span><span class="related-bottom-desc">Полный гид по заднему тормозному цилиндру Газель Некст. Артикулы, симптомы неисправности, пошаговая </span></a><a href="/articles/s/so/sobol-zamena-zadnikh-tormoznykh-kolodok.html" class="related-bottom-card"><span class="related-bottom-title">Замена задних тормозных колодок Соболь: пошаговая инструкция</span><span class="related-bottom-desc">Полное руководство по замене задних тормозных колодок ГАЗ Соболь. Регулировка барабанов, выбор расхо</span></a><a href="/articles/r/re/regulirovka-vakuumnogo-usilitelya-tormozov-gazel-biznes.html" class="related-bottom-card"><span class="related-bottom-title">Регулировка вакуумного усилителя тормозов Газель Бизнес: инструкция</span><span class="related-bottom-desc">Полное руководство по регулировке штока вакуумного усилителя тормозов на Газель Бизнес. Признаки неи</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🚐 Gazel-Help</div>
+                    <p class="footer-about">Полная база знаний по ремонту, обслуживанию и эксплуатации автомобилей Газель: от пошаговых инструкций и схем электрооборудования до обзоров двигателей и честных отзывов владельцев.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/кузов-и-кабина/">📁 Кузов И Кабина</a></li>
+<li><a href="/category/электрика-и-электроника/">📁 Электрика И Электроника</a></li>
+<li><a href="/category/двигатель/">📁 Двигатель</a></li>
+<li><a href="/category/сравнения-и-выбор/">📁 Сравнения И Выбор</a></li>
+<li><a href="/category/кпп-и-трансмиссия/">📁 Кпп И Трансмиссия</a></li>
+<li><a href="/category/подвеска-и-рулевое/">📁 Подвеска И Рулевое</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Gazel-Help. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

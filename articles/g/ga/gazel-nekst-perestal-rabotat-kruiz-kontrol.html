@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🚐</text></svg>">
+    <title>Газель Некст: не работает круиз-контроль — причины и ремонт — Gazel-Help</title>
+    <meta name="description" content="Почему на Газель NEXT не включается круиз-контроль? Полный гид по диагностике: ошибки CAN-шины, датчики педалей, настройки и ремонт проводки.">
+    <link rel="canonical" href="https://gazel-help.vercel.app/articles/g/ga/gazel-nekst-perestal-rabotat-kruiz-kontrol.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Газель Некст: не работает круиз-контроль — причины и ремонт">
+    <meta property="og:description" content="Почему на Газель NEXT не включается круиз-контроль? Полный гид по диагностике: ошибки CAN-шины, датчики педалей, настройки и ремонт проводки.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1777185859">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🚐</span>
+                <span>Gazel-Help</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/кузов-и-кабина/" class="nav-link">📁 Кузов И Кабина</a>
+<a href="/category/электрика-и-электроника/" class="nav-link">📁 Электрика И Электроника</a>
+<a href="/category/двигатель/" class="nav-link">📁 Двигатель</a>
+<a href="/category/сравнения-и-выбор/" class="nav-link">📁 Сравнения И Выбор</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/кузов-и-кабина/" class="dropdown-item">📁 Кузов И Кабина</a>
+<a href="/category/электрика-и-электроника/" class="dropdown-item">📁 Электрика И Электроника</a>
+<a href="/category/двигатель/" class="dropdown-item">📁 Двигатель</a>
+<a href="/category/сравнения-и-выбор/" class="dropdown-item">📁 Сравнения И Выбор</a>
+<a href="/category/кпп-и-трансмиссия/" class="dropdown-item">📁 Кпп И Трансмиссия</a>
+<a href="/category/подвеска-и-рулевое/" class="dropdown-item">📁 Подвеска И Рулевое</a>
+<a href="/category/мосты,-ступицы-и-колёса/" class="dropdown-item">📁 Мосты, Ступицы И Колёса</a>
+<a href="/category/соболь/" class="dropdown-item">📁 Соболь</a>
+<a href="/category/топливная-система-и-гбо/" class="dropdown-item">📁 Топливная Система И Гбо</a>
+<a href="/category/тормозная-система/" class="dropdown-item">📁 Тормозная Система</a>
+<a href="/category/оптика-и-свет/" class="dropdown-item">📁 Оптика И Свет</a>
+<a href="/category/панель-приборов-и-индикаторы/" class="dropdown-item">📁 Панель Приборов И Индикаторы</a>
+<a href="/category/салон-и-комфорт/" class="dropdown-item">📁 Салон И Комфорт</a>
+<a href="/category/система-охлаждения/" class="dropdown-item">📁 Система Охлаждения</a>
+<a href="/category/система-отопления-и-климат/" class="dropdown-item">📁 Система Отопления И Климат</a>
+<a href="/category/тюнинг-и-доработки/" class="dropdown-item">📁 Тюнинг И Доработки</a>
+<a href="/category/техжидкости-и-заправочные-объёмы/" class="dropdown-item">📁 Техжидкости И Заправочные Объёмы</a>
+<a href="/category/мультимедиа-и-допоборудование/" class="dropdown-item">📁 Мультимедиа И Допоборудование</a>
+<a href="/category/диагностика/" class="dropdown-item">📁 Диагностика</a>
+<a href="/category/рама-и-усиление/" class="dropdown-item">📁 Рама И Усиление</a>
+<a href="/category/выхлопная-система/" class="dropdown-item">📁 Выхлопная Система</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/панель-приборов-и-индикаторы/">Панель Приборов И Индикаторы</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Газель Некст: не работает круиз-контроль — причины и ремонт</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Почему на Газель NEXT не работает круиз-контроль: диагностика и устранение неисправностей</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#основные-причины-отказа-системы-поддержания-скорости">Основные причины отказа системы поддержания скорости</a></li><li><a href="#диагностика-педалей-и-концевых-датчиков">Диагностика педалей и концевых датчиков</a></li><li><a href="#проблемы-с-проводкой-и-контактами-can-шины">Проблемы с проводкой и контактами CAN-шины</a></li><li><a href="#неисправности-кнопок-управления-на-руле">Неисправности кнопок управления на руле</a></li><li><a href="#программные-сбои-и-калибровка-эбу">Программные сбои и калибровка ЭБУ</a></li><li><a href="#другие-скрытые-факторы-влияния">Другие скрытые факторы влияния</a></li><li><a href="#часто-задаваемые-вопросы-faq">Часто задаваемые вопросы (FAQ)</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Ситуация, когда на <em>ГАЗель NEXT</em> перестает работать круиз-контроль, часто застает владельца врасплох, особенно если система использовалась для длительных рейсов. Коммерческий транспорт требует максимальной концентрации, и отказ вспомогательных электронных систем может существенно повысить утомляемость водителя. В современных модификациях <strong>ГАЗель Некст</strong> управление скоростью завязано на сложную электронику, связанную с блоком управления двигателем.</p>
+
+<p>Проблема может проявляться по-разному: от полного отсутствия реакции на кнопки управления до внезапного отключения системы во время движения. В большинстве случаев причина кроется не в поломке самого модуля, а в сбоях датчиков или проводки. <em>Евро-4</em> и <em>Евро-5</em> двигатели Cummins и Evotech имеют свои особенности работы с CAN-шиной, что требует специфического подхода к поиску неисправностей.</p>
+
+<p>Прежде чем паниковать и искать услуги дорогостоящего сервиса, стоит провести первичную диагностику самостоятельно. Часто отказ системы сигнализирует о более глубоких проблемах в электрике или педалях, которые лучше выявить на ранней стадии. В этой статье мы разберем основные причины, почему <strong>круиз-контроль</strong> не включается или выключается самопроизвольно.</p>
+
+<h2 id="основные-причины-отказа-системы-поддержания-скорости">Основные причины отказа системы поддержания скорости</h2>
+
+<p>Первое, что нужно учитывать, — это логика работы ЭБУ (электронного блока управления). Если <em>ГАЗель Некст</em> не видит сигнал о нажатии тормоза или сцепления, система блокируется в целях безопасности. Датчики педалей являются самым слабым звеном в этой цепи, так как они подвергаются постоянной механической нагрузке и воздействию влаги.</p>
+
+<p>Второй распространенной причиной является состояние <strong>концевых выключателей</strong>. На автомобилях с механической КПП часто выходит из строя датчик положения педали сцепления. ЭБУ интерпретирует малейшее дрожание контакта как нажатие сцепления и немедленно отключает круиз-контроль, даже если водитель не касался педали.</p>
+
+<blockquote>
+<p>⚠️ Внимание: Если на приборной панели загорается индикатор неисправности двигателя (Check Engine), система круиз-контроля будет принудительно отключена программно до устранения основной ошибки.</p>
+</blockquote>
+
+<p>Также стоит обратить внимание на целостность проводки. Вибрации коммерческого грузовика со временем приводят к перетиранию жгутов или окислению контактов в разъемах под кабиной. Особенно это актуально для машин, работающих в тяжелых условиях эксплуатации.</p>
+
+<div class="poll-widget" id="poll-882e04fb"><div class="poll-widget-question">📊 Как именно ведет себя круиз-контроль на вашей ГАЗели?</div><div class="poll-widget-option" data-poll="882e04fb" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Не включается совсем:Включается, но сразу выключается:Работает нестабильно:Горит ошибка на панели</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="диагностика-педалей-и-концевых-датчиков">Диагностика педалей и концевых датчиков</h2>
+
+<p>Наиболее частым виновником проблем с <strong>ACC</strong> (Adaptive Cruise Control) или обычным круизом становится педальный узел. В отличие от старых моделей, где тяги были механическими, в <em>ГАЗель NEXT</em> используется электронная педаль газа с двумя датчиками положения. Если ЭБУ видит рассинхронизацию показаний этих датчиков, режим поддержания скорости блокируется.</p>
+
+<p>Отдельного внимания требует датчик педали тормоза. Их обычно два: один отвечает за стоп-сигналы, второй — для передачи сигнала в ЭБУ. Если второй датчик залип в замкнутом состоянии, компьютер "думает", что вы тормозите, и не дает активировать систему. Проверить это можно мультиметром, прозванивая контакты при нажатой и отпущенной педали.</p>
+
+<div class="checklist-block"><h4>☑️ Проверка педалей</h4><label class="check-item"><input type="checkbox"><span>Проверить ход педали тормоза:Прозвонить датчик сцепления мультиметром:Осмотреть разъемы на педали газа:Проверить регулировку штока датчика</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 1</div></div>
+
+<p>Часто бывает так, что сам датчик исправен, но нарушена его регулировка. Шток датчика может быть слишком сильно вдавлен или, наоборот, иметь большой люфт. В этом случае необходимо снять датчик с кронштейна и проверить его работу "на весу".</p>
+
+<h2 id="проблемы-с-проводкой-и-контактами-can-шины">Проблемы с проводкой и контактами CAN-шины</h2>
+
+<p>Обмен данными между блоком управления двигателем, панелью приборов и модулем круиз-контроля происходит по цифровой шине <strong>CAN-bus</strong>. Если в этой сети возникают помехи или обрывы, команды с кнопок руля просто не доходят до исполняющего механизма. На <em>ГАЗель Бизнес</em> и <em>NEXT</em> проводка часто страдает от вибрации.</p>
+
+<p>Особое внимание следует уделить разъему "шлейфу" в рулевой колонке (подушке безопасности и кнопок руля). Из-за постоянного вращения руля контакты внутри шлейфа могут перетираться или окисляться. Это приводит к тому, что кнопка включения перестает реагировать или работает через раз.</p>
+
+<p>Ниже приведена таблица типовых неисправностей проводки, влияющих на работу системы:</p>
+
+<table>
+<thead>
+<tr>
+<th>Элемент</th>
+<th>Симптом</th>
+<th>Метод проверки</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Шлейф руля</td>
+<td>Не горит индикатор на панели</td>
+<td>Прозвонка контактов разъема</td>
+</tr>
+<tr>
+<td>Жгут под капотом</td>
+<td>Периодические сбои</td>
+<td>Визуальный осмотр на трещины</td>
+</tr>
+<tr>
+<td>Разъем ЭБУ</td>
+<td>Отсутствие связи с CAN</td>
+<td>Проверка пинов 12В и GND</td>
+</tr>
+<tr>
+<td>Масса кузова</td>
+<td>Хаотичные ошибки</td>
+<td>Замер сопротивления на кузове</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>⚠️ Внимание: Перед прозвонкой проводки обязательно снимайте клемму с аккумулятора, чтобы избежать короткого замыкания и повреждения дорогостоящего ЭБУ.</p>
+</blockquote>
+
+<details class="faq-item"><summary>Как найти обрыв в жгуте без схемы?</summary><div class="faq-answer"><p>Если схемы нет, можно использовать метод "покачивания". Включите зажигание, найдите работающий элемент цепи (например, стоп-сигнал) и начните аккуратно шевелить жгуты проводов в местах их выхода из разъемов и перегибов. Если сигнал пропадает или появляется, вы нашли зону обрыва. Часто проблема кроется в месте входа провода в резиновую гофру.</p></p></div></details>
+
+<h2 id="неисправности-кнопок-управления-на-руле">Неисправности кнопок управления на руле</h2>
+
+<p>Модуль управления круиз-контролем на <em>ГАЗель NEXT</em> расположен на подрулевом переключателе или кнопках на спице руля. Механический износ контактов — естественный процесс. Внутри кнопок находятся микровыключатели, которые со временем теряют контакт или начинают "двоить" сигнал.</p>
+
+<p>Если у вас установлен руль с мультифункцией, проблема может быть в самом шлейфе, соединяющем кнопки с бортовой сетью. Частое использование влажной уборки салона приводит к попаданию химии внутрь кнопок, что вызывает коррозию контактов.</p>
+
+<p>Для диагностики можно попробовать аккуратно разобрать блок кнопок и почистить контакты спиртом. Однако, если пластик кнопок потерян или механизм разрушен, потребуется замена всего подрулевого переключателя или блока кнопок в сборе.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>При замене кнопок руля на ГАЗель Некст обязательно проверяйте совместимость артикулов. Разные годы выпуска могут иметь различную распиновку разъемов, даже если внешне кнопки выглядят одинаково.</p></div>
+
+<h2 id="программные-сбои-и-калибровка-эбу">Программные сбои и калибровка ЭБУ</h2>
+
+<p>Иногда аппаратная часть полностью исправна, но программное обеспечение ЭБУ дает сбой. Это может произойти после скачка напряжения в бортовой сети или неудачного обновления прошивки. В таких случаях <strong>круиз-контроль</strong> может быть просто "заблокирован" программно.</p>
+
+<p>Для устранения программных глюков часто помогает сброс адаптаций. Это можно сделать через диагностический сканер, подключившись к разъему OBDII. Процедура сброса возвращает параметры дроссельной заслонки и педалей к заводским значениям.</p>
+
+<p>В некоторых случаях требуется перепрошивка блока управления двигателем на актуальную версию. Завод <em>ГАЗ</em> периодически выпускает обновления, устраняющие известные ошибки в алгоритмах работы двигателя <em>Cummins ISF 2.8</em> и <em>Evotech</em>.</p>
+
+<h2 id="другие-скрытые-факторы-влияния">Другие скрытые факторы влияния</h2>
+
+<p>Существует ряд менее очевидных причин, которые могут блокировать работу системы. Например, неисправность датчика скорости автомобиля. Если ЭБУ не получает корректный сигнал о скорости движения (или сигнал прерывистый), круиз-контроль не активируется.</p>
+
+<p>Также стоит проверить состояние вакуумной системы (если используется вакуумный привод дросселя на старых версиях) или электропривода дроссельной заслонки. Любая неисправность в системе управления подачей воздуха может привести к блокировке внешних управляющих воздействий.</p>
+
+<p>Низкое напряжение в бортовой сети также является стоп-фактором. Если генератор не выдает достаточного заряда или аккумулятор старый, ЭБУ переходит в режим экономии энергии и отключает не критичные для движения функции, включая <em>Cruise Control</em>.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Комплексная проверка электрики и датчиков позволяет устранить 90% проблем с круиз-контролем без замены дорогостоящих блоков управления.</p></div>
+
+<h2 id="часто-задаваемые-вопросы-faq">Часто задаваемые вопросы (FAQ)</h2>
+
+<details>
+<summary>Можно ли установить круиз-контроль на ГАЗель NEXT, если его не было с завода?</summary>
+<p>Да, установка возможна. Потребуется замена подрулевого переключателя на версию с кнопками, прокладка проводки к ЭБУ и, возможно, перепрошивка блока управления двигателем для активации функции. Также может потребоваться установка отдельного модуля, если ЭБУ не поддерживает эту опцию "из коробки".</p>
+</details>
+
+<details>
+<summary>Почему круиз выключается сам при движении по трассе?</summary>
+<p>Чаще всего это связано с "дребезгом" контактов датчика педали тормоза или сцепления. Также причиной может быть проскальзывание ремня генератора (скачок напряжения) или кратковременная потеря сигнала датчика скорости на неровной дороге.</p>
+</details>
+
+<details>
+<summary>Как проверить, активирована ли функция в ЭБУ?</summary>
+<p>Для этого необходим диагностический сканер (например, ELM327 с подходящим ПО или дилерский сканер). В параметрах конфигурации ЭБУ должна стоять галочка напротив пункта "Cruise Control" или "Система поддержания скорости".</p>
+</details>
+
+<details>
+<summary>Влияет ли неисправность ABS на работу круиз-контроля?</summary>
+<p>Да, влияет. Поскольку система использует данные о скорости колес от датчиков ABS для расчета ускорения и торможения, любая ошибка в системе ABS приведет к принудительному отключению круиз-контроля.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#основные-причины-отказа-системы-поддержания-скорости">Основные причины отказа системы поддержания скорости</a></li><li><a href="#диагностика-педалей-и-концевых-датчиков">Диагностика педалей и концевых датчиков</a></li><li><a href="#проблемы-с-проводкой-и-контактами-can-шины">Проблемы с проводкой и контактами CAN-шины</a></li><li><a href="#неисправности-кнопок-управления-на-руле">Неисправности кнопок управления на руле</a></li><li><a href="#программные-сбои-и-калибровка-эбу">Программные сбои и калибровка ЭБУ</a></li><li><a href="#другие-скрытые-факторы-влияния">Другие скрытые факторы влияния</a></li><li><a href="#часто-задаваемые-вопросы-faq">Часто задаваемые вопросы (FAQ)</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-snyat-torpedu-gazel-nekst.html" class="related-card">Как снять торпеду Газель Некст: пошаговая инструкция и нюансы</a></li><li><a href="/articles/n/ne/ne-rabotaet-spidometr-valdaj.html" class="related-card">Не работает спидометр Валдай: причины и ремонт</a></li><li><a href="/articles/s/sb/sbros-servis-gazel-nekst.html" class="related-card">Сброс сервис Газель NEXT: инструкция, коды ошибок и сброс интервала ТО</a></li><li><a href="/articles/s/st/steklo-pribornoj-paneli-gazel-nekst.html" class="related-card">Стекло приборной панели Газель NEXT: выбор, замена, устранение бликов</a></li><li><a href="/articles/k/kn/knopka-avarijki-gazel-3302.html" class="related-card">Кнопка аварийки Газель 3302: схема, неисправности и ремонт</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-snyat-torpedu-gazel-nekst.html" class="related-bottom-card"><span class="related-bottom-title">Как снять торпеду Газель Некст: пошаговая инструкция и нюансы</span><span class="related-bottom-desc">Подробное руководство по демонтажу панели приборов Газель Next. Советы, схемы креплений, порядок дей</span></a><a href="/articles/n/ne/ne-rabotaet-spidometr-valdaj.html" class="related-bottom-card"><span class="related-bottom-title">Не работает спидометр Валдай: причины и ремонт</span><span class="related-bottom-desc">Спидометр Валдай не работает? Полный гид по диагностике, замене датчика скорости, ремонту проводки и</span></a><a href="/articles/s/sb/sbros-servis-gazel-nekst.html" class="related-bottom-card"><span class="related-bottom-title">Сброс сервис Газель NEXT: инструкция, коды ошибок и сброс интервала ТО</span><span class="related-bottom-desc">Полная инструкция: как выполнить сброс сервисного интервала на Газель Некст. Методы через кнопку, пр</span></a><a href="/articles/s/st/steklo-pribornoj-paneli-gazel-nekst.html" class="related-bottom-card"><span class="related-bottom-title">Стекло приборной панели Газель NEXT: выбор, замена, устранение бликов</span><span class="related-bottom-desc">Полный гид по стеклу приборной панели Газель Некст. Как снять, заменить, убрать блики и выбрать каче</span></a><a href="/articles/k/kn/knopka-avarijki-gazel-3302.html" class="related-bottom-card"><span class="related-bottom-title">Кнопка аварийки Газель 3302: схема, неисправности и ремонт</span><span class="related-bottom-desc">Подробный разбор кнопки аварийной сигнализации Газель 3302. Схема подключения, частые поломки, замен</span></a><a href="/articles/g/ga/gazel-nekst-oboznachenie-knopok-na-torpede.html" class="related-bottom-card"><span class="related-bottom-title">Газель Next: расшифровка кнопок на панели приборов и их функции</span><span class="related-bottom-desc">Подробный гид по обозначениям кнопок на торпеде Газель Next. Узнайте, за что отвечают индикаторы, ка</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🚐 Gazel-Help</div>
+                    <p class="footer-about">Полная база знаний по ремонту, обслуживанию и эксплуатации автомобилей Газель: от пошаговых инструкций и схем электрооборудования до обзоров двигателей и честных отзывов владельцев.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/кузов-и-кабина/">📁 Кузов И Кабина</a></li>
+<li><a href="/category/электрика-и-электроника/">📁 Электрика И Электроника</a></li>
+<li><a href="/category/двигатель/">📁 Двигатель</a></li>
+<li><a href="/category/сравнения-и-выбор/">📁 Сравнения И Выбор</a></li>
+<li><a href="/category/кпп-и-трансмиссия/">📁 Кпп И Трансмиссия</a></li>
+<li><a href="/category/подвеска-и-рулевое/">📁 Подвеска И Рулевое</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Gazel-Help. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

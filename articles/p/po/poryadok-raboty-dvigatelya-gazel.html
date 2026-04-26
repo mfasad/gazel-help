@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🚐</text></svg>">
+    <title>Порядок работы двигателя Газель: циклы, фазы и диагностика — Gazel-Help</title>
+    <meta name="description" content="Подробно разберем порядок работы двигателя Газель (405, 406, 4216, Cummins). Таблицы фаз, схемы ГРМ, особенности зажигания и советы по настройке.">
+    <link rel="canonical" href="https://gazel-help.vercel.app/articles/p/po/poryadok-raboty-dvigatelya-gazel.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Порядок работы двигателя Газель: циклы, фазы и диагностика">
+    <meta property="og:description" content="Подробно разберем порядок работы двигателя Газель (405, 406, 4216, Cummins). Таблицы фаз, схемы ГРМ, особенности зажигания и советы по настройке.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1777185859">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🚐</span>
+                <span>Gazel-Help</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/кузов-и-кабина/" class="nav-link">📁 Кузов И Кабина</a>
+<a href="/category/электрика-и-электроника/" class="nav-link">📁 Электрика И Электроника</a>
+<a href="/category/двигатель/" class="nav-link">📁 Двигатель</a>
+<a href="/category/сравнения-и-выбор/" class="nav-link">📁 Сравнения И Выбор</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/кузов-и-кабина/" class="dropdown-item">📁 Кузов И Кабина</a>
+<a href="/category/электрика-и-электроника/" class="dropdown-item">📁 Электрика И Электроника</a>
+<a href="/category/двигатель/" class="dropdown-item">📁 Двигатель</a>
+<a href="/category/сравнения-и-выбор/" class="dropdown-item">📁 Сравнения И Выбор</a>
+<a href="/category/кпп-и-трансмиссия/" class="dropdown-item">📁 Кпп И Трансмиссия</a>
+<a href="/category/подвеска-и-рулевое/" class="dropdown-item">📁 Подвеска И Рулевое</a>
+<a href="/category/мосты,-ступицы-и-колёса/" class="dropdown-item">📁 Мосты, Ступицы И Колёса</a>
+<a href="/category/соболь/" class="dropdown-item">📁 Соболь</a>
+<a href="/category/топливная-система-и-гбо/" class="dropdown-item">📁 Топливная Система И Гбо</a>
+<a href="/category/тормозная-система/" class="dropdown-item">📁 Тормозная Система</a>
+<a href="/category/оптика-и-свет/" class="dropdown-item">📁 Оптика И Свет</a>
+<a href="/category/панель-приборов-и-индикаторы/" class="dropdown-item">📁 Панель Приборов И Индикаторы</a>
+<a href="/category/салон-и-комфорт/" class="dropdown-item">📁 Салон И Комфорт</a>
+<a href="/category/система-охлаждения/" class="dropdown-item">📁 Система Охлаждения</a>
+<a href="/category/система-отопления-и-климат/" class="dropdown-item">📁 Система Отопления И Климат</a>
+<a href="/category/тюнинг-и-доработки/" class="dropdown-item">📁 Тюнинг И Доработки</a>
+<a href="/category/техжидкости-и-заправочные-объёмы/" class="dropdown-item">📁 Техжидкости И Заправочные Объёмы</a>
+<a href="/category/мультимедиа-и-допоборудование/" class="dropdown-item">📁 Мультимедиа И Допоборудование</a>
+<a href="/category/диагностика/" class="dropdown-item">📁 Диагностика</a>
+<a href="/category/рама-и-усиление/" class="dropdown-item">📁 Рама И Усиление</a>
+<a href="/category/выхлопная-система/" class="dropdown-item">📁 Выхлопная Система</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/двигатель/">Двигатель</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Порядок работы двигателя Газель: циклы, фазы и диагностика</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Порядок работы двигателя Газель: полный разбор циклов и фаз</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#фундаментальные-принципы-четырехтактного-цикла">Фундаментальные принципы четырехтактного цикла</a></li><li><a href="#специфика-работы-двигателей-змз-402-405-406-409">Специфика работы двигателей ЗМЗ (402, 405, 406, 409)</a></li><li><a href="#особенности-двигателей-умз-4216-evotech">Особенности двигателей УМЗ (4216, EvoTech)</a></li><li><a href="#рабочий-цикл-дизельного-cummins-isf-28">Рабочий цикл дизельного Cummins ISF 2.8</a></li><li><a href="#сравнительная-таблица-параметров-грм">Сравнительная таблица параметров ГРМ</a></li><li><a href="#диагностика-нарушений-порядка-работы">Диагностика нарушений порядка работы</a></li><li><a href="#часто-задаваемые-вопросы-faq">Часто задаваемые вопросы (FAQ)</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Понимание того, как именно функционирует силовой агрегат, является фундаментом для грамотной диагностики и качественного ремонта отечественного коммерческого транспорта. <strong>Порядок работы двигателя Газель</strong> — это не просто абстрактная теория из учебников, а практическое знание, позволяющее мастеру на слух или по вибрации определить, какой именно цилиндр не работает или где произошел сбой в системе зажигания. Владельцы автомобилей ГАЗель часто сталкиваются с необходимостью регулировки клапанов или замены прокладки ГБЦ, и без знания последовательности тактов здесь не обойтись.</p>
+
+<p>Линейка двигателей, устанавливаемых на эти автомобили, достаточно широка: от классических карбюраторных ЗМЗ-402 и инжекторных ЗМЗ-405/406 до дизельных Cummins ISF 2.8 и бензиновых УМЗ-4216. Несмотря на конструктивные различия, <em>принцип четырехтактного цикла</em> остается неизменным для всех них. Однако порядок воспламенения смеси в цилиндрах может существенно отличаться, что напрямую влияет на балансировку коленчатого вала и работу системы охлаждения.</p>
+
+<p>В данной статье мы детально разберем алгоритмы работы различных моторов, уделив особое внимание фазам газораспределения и моментам впрыска. <mark>Критически важно понимать, что на двигателях ЗМЗ с горизонтальным развалом блоков порядок 1-3-4-2, тогда как на Cummins он может отличаться из-за особенностей ТНВД.</mark> Разобравшись в нюансах, вы сможете самостоятельно проводить первичную диагностику и избегать грубых ошибок при сборке узлов.</p>
+
+<h2 id="фундаментальные-принципы-четырехтактного-цикла">Фундаментальные принципы четырехтактного цикла</h2>
+
+<p>Любой современный двигатель внутреннего сгорания, установленный на Газель, работает по схеме четырехтактного цикла. Это означает, что для совершения одного полного рабочего процесса поршень должен совершить четыре хода, а коленчатый вал — два полных оборота (720 градусов). Первый такт — это <strong>впуск</strong>, когда поршень движется вниз, создавая разрежение, и в цилиндр через открытый впускной клапан поступает топливно-воздушная смесь (или чистый воздух в случае дизеля).</p>
+
+<p>Затем следует такт сжатия. В этот момент оба клапана закрыты, поршень движется вверх, уплотняя смесь и повышая её температуру. В конце этого такта происходит искрообразование (на бензиновых моторах) или впрыск топлива под высоким давлением (на дизелях), что приводит к воспламенению. Расширяющиеся газы толкают поршень вниз — это рабочий ход, единственный такт, при котором двигатель вырабатывает энергию.</p>
+
+<p>Завершает цикл такт выпуска. Поршень снова движется вверх, выталкивая отработавшие газы через открытый выпускной клапан в выхлопную систему. <em>Синхронизация</em> открытия и закрытия клапанов строго привязана к положению коленчатого вала. Малейшее рассогласование меток ГРМ приводит к нарушению этого цикла, потере мощности и возможному столкновению клапанов с поршнем.</p>
+
+<blockquote>
+<p>⚠️ Внимание: При сборке двигателя после ремонта категорически запрещается проворачивать коленчатый вал против часовой стрелки (если смотреть спереди), так как это может привести к перескакиванию цепи ГРМ и нарушению фаз газораспределения.</p>
+</blockquote>
+
+<details class="faq-item"><summary>Почему именно 4 такта?</summary><div class="faq-answer"><p>Четырехтактный цикл обеспечивает наилучший баланс между мощностью, экономичностью и экологичностью. Двухтактные моторы проще, но имеют высокий расход топлива и масла, а также худшие показатели по токсичности выхлопа, что неприемлемо для современных коммерческих автомобилей.</p></div></details>
+
+<h2 id="специфика-работы-двигателей-змз-402-405-406-409">Специфика работы двигателей ЗМЗ (402, 405, 406, 409)</h2>
+
+<p>Двигатели производства Заволжского моторного завода являются наиболее распространенными на Газелях. Их объединяет классическая рядная компоновка и одинаковый порядок работы цилиндров: <strong>1-3-4-2</strong>. Это означает, что после рабочего хода в первом цилиндре, следующий импульс происходит в третьем, затем в четвертом и, наконец, во втором. Такая последовательность обеспечивает равномерную нагрузку на коленчатый вал и снижает вибрации.</p>
+
+<p>Особенностью моторов ЗМЗ-406 и его модификаций (405, 409) является наличие двух распределительных валов и гидравлических компенсаторов (на более поздних версиях) или регулировочных шайб. Привод ГРМ здесь осуществляется цепью, что требует особого внимания к натяжителям. Угол опережения зажигания на этих двигателях регулируется электронным блоком управления (ЭБУ), который считывает данные с датчика положения коленвала (ДПКВ) и датчика фаз.</p>
+
+<p>На более старых моделях ЗМЗ-402 с контактной или бесконтактной системой зажигания порядок 1-3-4-2 также сохраняется, но настройка момента искрообразования производится механическим путем (поворотом трамблера). Ошибка в определении первого цилиндра при установке зажигания приведет к невозможности запуска.</p>
+
+<div class="poll-widget" id="poll-46799fea"><div class="poll-widget-question">📊 Какой двигатель стоит на вашей Газели?</div><div class="poll-widget-option" data-poll="46799fea" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">ЗМЗ-405/406 (Евро-2/3)</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="46799fea" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">УМЗ-4216 (Евро-3/4)</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="46799fea" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Cummins 2.8 Diesel</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="46799fea" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">ЗМЗ-402 (Карбюратор)</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="46799fea" data-idx="4" onclick="pbPollVote(this)"><span class="poll-widget-label">Другой</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="особенности-двигателей-умз-4216-evotech">Особенности двигателей УМЗ (4216, EvoTech)</h2>
+
+<p>Двигатели Ульяновского моторного завода, такие как <em>УМЗ-4216</em> и более современные <em>EvoTech</em>, также имеют рядную четырехцилиндровую конструкцию. Порядок работы цилиндров здесь идентичен заволжским аналогам — <strong>1-3-4-2</strong>. Однако конструкция головки блока и механизма газораспределения имеет свои нюансы. В частности, на УМЗ часто применяются штанговые толкатели, что делает систему менее требовательной к качеству масла, но более шумной.</p>
+
+<p>На двигателях EvoTech, являющихся глубокой модернизацией 4216-го, внедрены гидрокомпенсаторы и изменена форма камеры сгорания для повышения эффективности сгорания топлива. Фазы впуска и выпуска здесь оптимизированы для работы на низких оборотах, что важно для грузового автомобиля. Система зажигания полностью электронная, с индивидуальными катушками для каждого цилиндра (на версиях Евро-4 и выше), что исключает проблемы с высоковольтными проводами.</p>
+
+<p>При диагностике троения на УМЗ часто сталкиваются с проблемой неравномерного прогрева головки блока, что может приводить к деформации и подсосу воздуха через прокладку. Это нарушает состав смеси в конкретном цилиндре. Проверка компрессии в этом случае является обязательной процедурой. Также стоит отметить, что на УМЗ критически важен тепловой зазор клапанов, который необходимо регулировать каждые 15-20 тысяч километров.</p>
+
+<div class="checklist-block"><h4>☑️ Диагностика троения двигателя</h4><label class="check-item"><input type="checkbox"><span>Проверить свечи зажигания</span></label><label class="check-item"><input type="checkbox"><span>Замерить компрессию во всех цилиндрах</span></label><label class="check-item"><input type="checkbox"><span>Проверить работу форсунок (или ВВ проводов)</span></label><label class="check-item"><input type="checkbox"><span>Прослушать работу гидрокомпенсаторов</span></label><label class="check-item"><input type="checkbox"><span>Проверить датчик ДПКВ</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 5</div></div>
+
+<h2 id="рабочий-цикл-дизельного-cummins-isf-28">Рабочий цикл дизельного Cummins ISF 2.8</h2>
+
+<p>Дизельный двигатель <strong>Cummins ISF 2.8</strong>, широко используемый на Газель-Бизнес и Next, имеет принципиальные отличия в организации рабочего процесса. Здесь воспламенение происходит не от искры, а от высокого давления и температуры сжатого воздуха. Порядок работы цилиндров — <strong>1-3-4-2</strong>, что стандартно для четырехцилиндровых рядников, но фазы и углы опережения впрыска управляются сложной электроникой Common Rail.</p>
+
+<p>Топливный насос высокого давления (ТНВД) создает давление в рампе до 1600 бар и выше. Форсунки открываются по команде ЭБУ с точностью до микросекунд. Важнейшим элементом здесь является механизм привода ТНВД, который часто связан с распредвалом. Нарушение меток при установке ГРМ на Cummins приводит к катастрофическим последствиям: поршни встречаются с клапанами, так как ход поршня и фазы ГРМ подобраны очень плотно.</p>
+
+<p>Особенностью Cummins является наличие системы рециркуляции отработавших газов (EGR) и сажевого фильтра (на версиях Евро-4/5). Порядок работы двигателя влияет на алгоритм регенерации сажевого фильтра. Если один цилиндр работает нестабильно, температура выхлопных газов падает, и фильтр забивается быстрее. Поэтому равномерность работы всех цилиндров на дизеле критична не только для мощности, но и для экологии.</p>
+
+<blockquote>
+<p>⚠️ Внимание: На двигателях Cummins (категорически нельзя) запускать двигатель «с эфира» или других быстровоспламеняющихся жидкостей. Это приводит к разрушению поршневой группы из-за детонации, так как дизель рассчитан на самовоспламенение от сжатия, а не от внешнего источника.</p>
+</blockquote>
+
+<h2 id="сравнительная-таблица-параметров-грм">Сравнительная таблица параметров ГРМ</h2>
+
+<p>Для наглядности сравним ключевые параметры газораспределения и зажигания различных двигателей. Эти данные помогут понять, почему подходы к ремонту и настройке отличаются.</p>
+
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>ЗМЗ-405/406</th>
+<th>УМЗ-4216/EvoTech</th>
+<th>Cummins ISF 2.8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Порядок работы</td>
+<td>1-3-4-2</td>
+<td>1-3-4-2</td>
+<td>1-3-4-2</td>
+</tr>
+<tr>
+<td>Привод ГРМ</td>
+<td>Две цепи</td>
+<td>Шестерни / Цепь</td>
+<td>Одна цепь</td>
+</tr>
+<tr>
+<td>Регулировка клапанов</td>
+<td>Гидрокомпенсаторы / Шайбы</td>
+<td>Щупом (винт-контргайка)</td>
+<td>Гидрокомпенсаторы</td>
+</tr>
+<tr>
+<td>Система зажигания</td>
+<td>Электронная (модуль/катушки)</td>
+<td>Электронная (катушки)</td>
+<td>От сжатия (Common Rail)</td>
+</tr>
+<tr>
+<td>Особые требования</td>
+<td>Натяжители цепей</td>
+<td>Частая регулировка зазоров</td>
+<td>Качество топлива и масла</td>
+</tr>
+</tbody>
+</table>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>При замене цепи ГРМ на ЗМЗ-406 всегда меняйте успокоители и натяжители. Старые пластиковые успокоители могут раскрошиться и попасть в маслопровод, вызвав масляное голодание гидрокомпенсаторов.</p></div>
+
+<h2 id="диагностика-нарушений-порядка-работы">Диагностика нарушений порядка работы</h2>
+
+<p>Нарушение порядка работы двигателя обычно проявляется в виде троения, вибрации на холостом ходу и потери тяги. Если двигатель Газели начал работать неровно, первым делом нужно определить, какой цилиндр не функционирует. На бензиновых моторах это делается методом поочередного отключения форсунок или свечных катушек (аккуратно, чтобы не получить удар током). На дизеле Cummins это можно сделать через диагностический сканер, отключая форсунки программно.</p>
+
+<p>Если при отключении цилиндра работа двигателя не меняется, значит, этот цилиндр не вносил вклада в работу. Далее следует проверить наличие искры (на бензине) и качество распыла топлива. Часто проблема кроется не в порядке работы как таковом, а в нарушении герметичности камеры сгорания (прогар клапана, пробой прокладки ГБЦ). В этом случае компрессия в проблемном цилиндре будет значительно ниже, чем в остальных.</p>
+
+<p>Еще одной причиной нарушения цикла может быть растяжение цепи ГРМ или перескакивание на зуб. В этом случае фазы газораспределения сбиваются: впускной клапан может открываться слишком рано или закрываться слишком поздно. Это приводит к хлопкам во впускном коллекторе или в глушителе. Проверка меток на шкивах распределительных валов — обязательный этап такой диагностики.</p>
+
+<blockquote>
+<p>⚠️ Внимание: При проверке компрессии на двигателях с гидрокомпенсаторами убедитесь, что аккумулятор полностью заряжен, а стартер исправен. Медленное проворачивание коленвала даст заниженные показания компрессии, что приведет к ложному диагнозу о необходимости капитального ремонта.</p>
+</blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Стабильная работа двигателя зависит не только от исправности отдельных деталей, но и от точной синхронизации их работы. Сбой в порядке работы цилиндров — это всегда следствие неисправности системы зажигания, топливоподачи или ГРМ.</p></div>
+
+<h2 id="часто-задаваемые-вопросы-faq">Часто задаваемые вопросы (FAQ)</h2>
+
+<details>
+<summary>Можно ли изменить порядок работы цилиндров 1-3-4-2 на 1-2-4-3 для улучшения характеристик?</summary>
+<p>Нет, изменить порядок работы цилиндров на готовом двигателе невозможно. Он жестко задан конструкцией коленчатого вала (расположением шатунных шеек) и формой кулачков распределительного вала. Попытка изменить порядок потребует полной замены КВ и распредвала на детали от другого двигателя с иной конфигурацией, что экономически и технически нецелесообразно.</p>
+</details>
+
+<details>
+<summary>Почему двигатель троит, но свечи и катушки исправны?</summary>
+<p>Если система зажигания в порядке, причина может быть в механической части: низкая компрессия из-за износа поршневой группы, прогар клапана, подсос воздуха через впускной коллектор (особенно актуально для УМЗ и ЗМЗ с резиновыми патрубками) или неисправность форсунки (забита или льет).</p>
+</details>
+
+<details>
+<summary>Как часто нужно проверять метки ГРМ на Газели?</summary>
+<p>Специально проверять метки при эксплуатации не нужно, если не проводился ремонт. Однако при появлении шума в районе цепей, потери мощности или хлопков в глушитель проверку фаз ГРМ следует провести немедленно. Плановая замена цепи на ЗМЗ рекомендуется каждые 100-120 тыс. км, на Cummins — по состоянию (обычно 150+ тыс. км).</p>
+</details>
+
+<details>
+<summary>Влияет ли порядок работы на вибрацию кузова?</summary>
+<p>Да, правильный порядок работы (1-3-4-2) обеспечивает равномерные интервалы между вспышками (каждые 180 градусов поворота коленвала), что минимизирует вибрации. Если бы порядок был иным или один цилиндр не работал, возникли бы дисбалансы, передающиеся на раму и кузов автомобиля.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#фундаментальные-принципы-четырехтактного-цикла">Фундаментальные принципы четырехтактного цикла</a></li><li><a href="#специфика-работы-двигателей-змз-402-405-406-409">Специфика работы двигателей ЗМЗ (402, 405, 406, 409)</a></li><li><a href="#особенности-двигателей-умз-4216-evotech">Особенности двигателей УМЗ (4216, EvoTech)</a></li><li><a href="#рабочий-цикл-дизельного-cummins-isf-28">Рабочий цикл дизельного Cummins ISF 2.8</a></li><li><a href="#сравнительная-таблица-параметров-грм">Сравнительная таблица параметров ГРМ</a></li><li><a href="#диагностика-нарушений-порядка-работы">Диагностика нарушений порядка работы</a></li><li><a href="#часто-задаваемые-вопросы-faq">Часто задаваемые вопросы (FAQ)</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/s/sl/slivnaya-probka-gazel.html" class="related-card">Сливная пробка Газель: размеры, артикулы, замена и советы</a></li><li><a href="/articles/z/za/zamena-zadnego-salnika-kolenvala-gazel-nekst-evotek.html" class="related-card">Замена заднего сальника коленвала Газель Next Evotech: цена, артикулы</a></li><li><a href="/articles/o/os/oshibka-r2106-gazel-405-evro-3.html" class="related-card">Ошибка P2106 Газель 405 Евро-3: причины и ремонт</a></li><li><a href="/articles/p/pr/prokladka-vpusknogo-kollektora-gazel-biznes.html" class="related-card">Прокладка впускного коллектора Газель Бизнес: выбор и замена</a></li><li><a href="/articles/s/sv/svechi-na-gazel-nekst.html" class="related-card">Свечи на Газель Некст: выбор, замена и зазоры</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/s/sl/slivnaya-probka-gazel.html" class="related-bottom-card"><span class="related-bottom-title">Сливная пробка Газель: размеры, артикулы, замена и советы</span><span class="related-bottom-desc">Как выбрать сливную пробку для Газель (двигатель, КПП, мосты). Размеры резьбы, артикулы, моменты зат</span></a><a href="/articles/z/za/zamena-zadnego-salnika-kolenvala-gazel-nekst-evotek.html" class="related-bottom-card"><span class="related-bottom-title">Замена заднего сальника коленвала Газель Next Evotech: цена, артикулы</span><span class="related-bottom-desc">Подробная инструкция по замене заднего сальника коленвала Газель Некст. Артикулы уплотнителей, цена </span></a><a href="/articles/o/os/oshibka-r2106-gazel-405-evro-3.html" class="related-bottom-card"><span class="related-bottom-title">Ошибка P2106 Газель 405 Евро-3: причины и ремонт</span><span class="related-bottom-desc">Подробный разбор ошибки P2106 на двигателе ЗМЗ-40524 (Евро-3). Причины аварийного режима, проверка д</span></a><a href="/articles/p/pr/prokladka-vpusknogo-kollektora-gazel-biznes.html" class="related-bottom-card"><span class="related-bottom-title">Прокладка впускного коллектора Газель Бизнес: выбор и замена</span><span class="related-bottom-desc">Симптомы подсоса воздуха, признаки прогара прокладки впускного коллектора на Газель Бизнес. Инструкц</span></a><a href="/articles/s/sv/svechi-na-gazel-nekst.html" class="related-bottom-card"><span class="related-bottom-title">Свечи на Газель Некст: выбор, замена и зазоры</span><span class="related-bottom-desc">Какие свечи ставить на Газель Некст (УМЗ, Cummins). Зазоры, калильное число, артикулы и пошаговая ин</span></a><a href="/articles/n/na/nasos-vakuumnyj-gazel.html" class="related-bottom-card"><span class="related-bottom-title">Вакуумный насос на Газель: выбор, замена и диагностика</span><span class="related-bottom-desc">Полный гид по вакуумному насосу Газель. Как работает, признаки неисправности, замена и регулировка. </span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🚐 Gazel-Help</div>
+                    <p class="footer-about">Полная база знаний по ремонту, обслуживанию и эксплуатации автомобилей Газель: от пошаговых инструкций и схем электрооборудования до обзоров двигателей и честных отзывов владельцев.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/кузов-и-кабина/">📁 Кузов И Кабина</a></li>
+<li><a href="/category/электрика-и-электроника/">📁 Электрика И Электроника</a></li>
+<li><a href="/category/двигатель/">📁 Двигатель</a></li>
+<li><a href="/category/сравнения-и-выбор/">📁 Сравнения И Выбор</a></li>
+<li><a href="/category/кпп-и-трансмиссия/">📁 Кпп И Трансмиссия</a></li>
+<li><a href="/category/подвеска-и-рулевое/">📁 Подвеска И Рулевое</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Gazel-Help. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🚐</text></svg>">
+    <title>Газель Next Cityline для OMSI 2: Установка, обзор и настройка — Gazel-Help</title>
+    <meta name="description" content="Полный гид по автобусу Газель Next Cityline для симулятора OMSI 2. Инструкция по установке мода, обзор салона, маршрутов и оптимизации FPS.">
+    <link rel="canonical" href="https://gazel-help.vercel.app/articles/g/ga/gazel-nekst-sitilajn-dlya-omsi-2.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Газель Next Cityline для OMSI 2: Установка, обзор и настройка">
+    <meta property="og:description" content="Полный гид по автобусу Газель Next Cityline для симулятора OMSI 2. Инструкция по установке мода, обзор салона, маршрутов и оптимизации FPS.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1777185859">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🚐</span>
+                <span>Gazel-Help</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/кузов-и-кабина/" class="nav-link">📁 Кузов И Кабина</a>
+<a href="/category/электрика-и-электроника/" class="nav-link">📁 Электрика И Электроника</a>
+<a href="/category/двигатель/" class="nav-link">📁 Двигатель</a>
+<a href="/category/сравнения-и-выбор/" class="nav-link">📁 Сравнения И Выбор</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/кузов-и-кабина/" class="dropdown-item">📁 Кузов И Кабина</a>
+<a href="/category/электрика-и-электроника/" class="dropdown-item">📁 Электрика И Электроника</a>
+<a href="/category/двигатель/" class="dropdown-item">📁 Двигатель</a>
+<a href="/category/сравнения-и-выбор/" class="dropdown-item">📁 Сравнения И Выбор</a>
+<a href="/category/кпп-и-трансмиссия/" class="dropdown-item">📁 Кпп И Трансмиссия</a>
+<a href="/category/подвеска-и-рулевое/" class="dropdown-item">📁 Подвеска И Рулевое</a>
+<a href="/category/мосты,-ступицы-и-колёса/" class="dropdown-item">📁 Мосты, Ступицы И Колёса</a>
+<a href="/category/соболь/" class="dropdown-item">📁 Соболь</a>
+<a href="/category/топливная-система-и-гбо/" class="dropdown-item">📁 Топливная Система И Гбо</a>
+<a href="/category/тормозная-система/" class="dropdown-item">📁 Тормозная Система</a>
+<a href="/category/оптика-и-свет/" class="dropdown-item">📁 Оптика И Свет</a>
+<a href="/category/панель-приборов-и-индикаторы/" class="dropdown-item">📁 Панель Приборов И Индикаторы</a>
+<a href="/category/салон-и-комфорт/" class="dropdown-item">📁 Салон И Комфорт</a>
+<a href="/category/система-охлаждения/" class="dropdown-item">📁 Система Охлаждения</a>
+<a href="/category/система-отопления-и-климат/" class="dropdown-item">📁 Система Отопления И Климат</a>
+<a href="/category/тюнинг-и-доработки/" class="dropdown-item">📁 Тюнинг И Доработки</a>
+<a href="/category/техжидкости-и-заправочные-объёмы/" class="dropdown-item">📁 Техжидкости И Заправочные Объёмы</a>
+<a href="/category/мультимедиа-и-допоборудование/" class="dropdown-item">📁 Мультимедиа И Допоборудование</a>
+<a href="/category/диагностика/" class="dropdown-item">📁 Диагностика</a>
+<a href="/category/рама-и-усиление/" class="dropdown-item">📁 Рама И Усиление</a>
+<a href="/category/выхлопная-система/" class="dropdown-item">📁 Выхлопная Система</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/мультимедиа-и-допоборудование/">Мультимедиа И Допоборудование</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Газель Next Cityline для OMSI 2: Установка, обзор и настройка</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Газель Next Cityline в OMSI 2: Детальный обзор и руководство</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#технические-особенности-модели-и-физика-поведения">Технические особенности модели и физика поведения</a></li><li><a href="#инструкция-по-установке-и-активации-мода">Инструкция по установке и активации мода</a></li><li><a href="#обзор-интерьера-салон-и-рабочее-место-водителя">Обзор интерьера: Салон и рабочее место водителя</a></li><li><a href="#маршруты-и-карты-для-тестирования">Маршруты и карты для тестирования</a></li><li><a href="#оптимизация-и-решение">Оптимизация и решение</a></li><li><a href="#перспективы-развития-и-моддинг">Перспективы развития и моддинг</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Симулятор общественного транспорта OMSI 2 славится своей невероятной детализацией, но именно аддоны от российских разработчиков привносят в игру особую атмосферу родных улиц. Одним из самых ожидаемых и востребованных дополнений стало появление модели <strong>Газель Next Cityline</strong>, которая идеально вписывается в реалии российских и постсоветских городов. Этот автобус малого класса кардинально меняет ощущение от вождения, предлагая совершенно новую динамику и звуковое сопровождение.</p>
+
+<p>В отличие от тяжелых сочлененных автобусов,"Ситилайн" требует более аккуратного обращения с педалями и внимательного отношения к габаритам. Разработка этой модели велась с учетом реальных технических характеристик шасси <em>ГАЗ А63R42</em>, что позволяет ощутить разницу в управлении по сравнению с европейскими аналогами. Для многих любителей симуляторов именно этот мод стал ключевым аргументом для возвращения в игру после долгого перерыва.</p>
+
+<p>В данном материале мы подробно разберем процесс интеграции автобуса в игру, оценим качество проработки салона и внешней модели, а также дадим советы по настройке производительности. Вы узнаете, как правильно установить мод, чтобы избежать конфликтов файлов, и какие маршруты лучше всего подходят для тестирования новых возможностей транспорта. <div class="poll-widget" id="poll-bbb1cc9b"><div class="poll-widget-question">📊 Используете ли вы моды на российский транспорт в OMSI 2?</div><div class="poll-widget-option" data-poll="bbb1cc9b" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Да, только российский транспорт:Предпочитаю европейские модели:Использую микс из разных стран:Вообще не играю в OMSI 2</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div></p>
+
+<h2 id="технические-особенности-модели-и-физика-поведения">Технические особенности модели и физика поведения</h2>
+
+<p>Разработчики мода постарались максимально точно воссоздать физику движения, характерную для дизельного двигателя <em>Cummins ISF 2.8</em>, который устанавливается на реальные автобусы. При разгоне чувствуется характерная тяга на низких оборотах, а коробка передач <strong>МКПП</strong> или <strong>АКПП</strong> (в зависимости от версии мода) переключается с заметной, но реалистичной задержкой. Это добавляет процессу вождения необходимой сложности и требует от игрока планировать обгоны заранее.</p>
+
+<p>Особого внимания заслуживает система подвески, которая в симуляторе ведет себя довольно мягко, сглаживая неровности дорожного покрытия, типичные для карт российских городов. Однако при полной загрузке салона пассажирами крен в поворотах становится более ощутимым, что заставляет сбрасывать скорость перед маневром. Звуковой движок также проработан детально: слышен вой турбины, лязг заслонок и специфический шум работы кондиционера.</p>
+
+<p>Важно отметить реализацию системы торможения. Пневматическая система накачивается не мгновенно, и при частых остановках давление может падать, влияя на эффективность торможения. <div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Физика Газели Next Cityline в OMSI 2 требует привыкания к более мягкому торможению и учету кренов кузова по сравнению с легкими автобусами.</p></div></p>
+
+<p>Для тех, кто любит копаться в настройках, доступна возможность регулировки чувствительности педалей и передаточных чисел. Это позволяет адаптировать поведение машины под свой стиль вождения или под конкретный сценарий маршрута, будь то спокойная езда по центру или резвые рейсы по трассе.</p>
+
+<h2 id="инструкция-по-установке-и-активации-мода">Инструкция по установке и активации мода</h2>
+
+<p>Процесс установки аддона не требует сложных манипуляций с архивами, однако требует внимательности к путям файлов. Сначала необходимо скачать актуальную версию мода с проверенного источника, убедившись, что она совместима с вашей версией игры. После загрузки архива его следует распаковать в корневую директорию симулятора, строго следуя структуре папок.</p>
+
+<div class="checklist-block"><h4>☑️ Чек-лист установки мода</h4><label class="check-item"><input type="checkbox"><span>Скачать архив с модом:Распаковать в папку OMSI 2/Vehicles:Активировать в меню"Настройки":Проверить работу на тестовом маршруте</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 1</div></div>
+
+<p>После копирования файлов нужно запустить симулятор и перейти в меню выбора транспортного средства. Если все сделано правильно, <strong>Газель Next Cityline</strong> появится в списке доступных автобусов, обычно в категории"Городские автобусы" или в отдельной вкладке"RusMods". В некоторых случаях может потребоваться активация DLC или проверка целостности файлов через лаунчер.</p>
+
+<blockquote>
+<p>⚠️ Внимание: Не копируйте файлы мода поверх системных файлов игры без создания резервной копии. В случае конфликта версий это может привести к вылетам при загрузке маршрута.</p>
+</blockquote>
+
+<p>Если автобус не отображается или отображается с ошибками текстур, проверьте наличие необходимых библиотек и обновлений для OMSI 2. Часто проблема кроется в отсутствии зависимостей, таких как новые карты или звуковые пакеты, которые требуются для корректной работы модели.</p>
+
+<h2 id="обзор-интерьера-салон-и-рабочее-место-водителя">Обзор интерьера: Салон и рабочее место водителя</h2>
+
+<p>Внутреннее пространство автобуса воссоздано с фотографической точностью. Кабина водителя оборудована удобным сиденьем с подлокотниками, а приборная панель содержит все необходимые индикаторы и датчики. Особый восторг вызывает работающая <em>маршрутно-информационная система</em>, которая синхронизируется с диспетчером и правильно отображает остановки на табло.</p>
+
+<p>Салон для пассажиров выполнен в характерной для"Ситилайна" цветовой гамме, с пластиковыми сиденьями и поручнями из нержавеющей стали. Модели пассажиров, садящихся в салон, не статичны: они занимают места, перемещаются к выходам и даже могут вступать в диалог с водителем через систему голосовых сообщений. Детализация пола, окон и даже загрязнений на стеклах создает эффект присутствия.</p>
+
+<details class="faq-item"><summary>Секреты интерьера</summary><div class="faq-answer"><p>В кабине водителя реализована возможность открывать форточки и регулировать положение зеркал, что влияет на обзор и аэродинамический шум.</p></div></details>
+
+<p>Управление климатом и отоплением также реализовано функционально. Вы можете регулировать температуру в салоне, что особенно актуально при езде в зимних картах, где окна могут запотевать без работающей системы обдува. Все кнопки на панели нажимаются с характерным звуком, что добавляет тактильности процессу.</p>
+
+<h2 id="маршруты-и-карты-для-тестирования">Маршруты и карты для тестирования</h2>
+
+<p>Для полноценного раскрытия потенциала <strong>Газели Next Cityline</strong> лучше всего подходят карты российских городов, где воссоздана соответствующая дорожная инфраструктура. Карты вроде"Москва","Санкт-Петербург" или"Краснодар" предлагают узкие улочки и специфические развязки, на которых габариты автобуса ощущаются наиболее остро.</p>
+
+<p>При выборе маршрута стоит обращать внимание на наличие выделенных полос и высоту бордюров. На некоторых любительских картах геометрия остановок может не совпадать с реальной длиной автобуса, что приведет к сложностям при парковке. <div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Используйте карту"Тестовый полигон" для первоначальной отладки управления перед выходом на сложные городские маршруты с плотным трафиком.</p></div></p>
+
+<p>Ниже приведена таблица совместимости популярных карт с данным модом:</p>
+
+<table>
+<thead>
+<tr>
+<th>Название карты</th>
+<th>Совместимость</th>
+<th>Особенности прохождения</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Москва (Центр)</td>
+<td>Высокая</td>
+<td>Плотный трафик, сложные перекрестки</td>
+</tr>
+<tr>
+<td>Санкт-Петербург</td>
+<td>Высокая</td>
+<td>Узкие исторические улицы, трамвайные пути</td>
+</tr>
+<tr>
+<td>Коломна</td>
+<td>Средняя</td>
+<td>Возможны проблемы с текстурами остановок</td>
+</tr>
+<tr>
+<td>Тестовый трек</td>
+<td>Полная</td>
+<td>Идеально для проверки физики</td>
+</tr>
+</tbody>
+</table>
+
+<p>Также стоит отметить, что на картах с динамическим временем суток освещение в салоне и работа фар выглядят особенно эффектно. Ночные рейсы на <em>Газели Next</em> требуют внимательности из-за особенностей освещения приборной панели и внешних габаритных огней.</p>
+
+<h2 id="оптимизация-и-решение">Оптимизация и решение</h2>
+
+<p>Несмотря на высокую детализацию, модель может потреблять значительные ресурсы компьютера, особенно в сочетании с тяжелыми картами. Если вы наблюдаете падение количества кадров в секунду (FPS), рекомендуется снизить качество теней и отражений в настройках графики самого симулятора. Также помогает отключение избыточных модов на трафик, которые могут конфликтовать с физикой автобуса.</p>
+
+<p>Частой проблемой является некорректное отображение текстур салона или отсутствие звуков. В этом случае необходимо проверить, загружены ли все файлы звукового пакета, идущие в комплекте с модом. Иногда помогает очистка кэша игры и повторная активация транспортного средства в меню.</p>
+
+<blockquote>
+<p>⚠️ Внимание: При использовании модов на графику (ReShade, ENB) возможна некорректная работа бликов на лобовом стекле кабины. Рекомендуется настраивать параметры постобработки индивидуально.</p>
+</blockquote>
+
+<p>Для владельцев слабых ПК существует облегченная версия модели, в которой уменьшено количество полигонов в салоне и снижено разрешение текстур. Это позволяет сохранить узнаваемость <strong>Газели</strong>, но значительно повышает производительность на старых видеокартах.</p>
+
+<h2 id="перспективы-развития-и-моддинг">Перспективы развития и моддинг</h2>
+
+<p>Сообщество любителей OMSI 2 активно развивает этот мод, добавляя новые функции и исправляя баги. В планах разработчиков значится внедрение полноценного мультимедийного экрана для пассажиров и расширение функционала навигационной системы. Также ведутся работы по адаптации модели под новые версии движка симулятора.</p>
+
+<p>Пользователи могут самостоятельно вносить изменения в конфигурационные файлы, меняя цвет кузова, схему окраски или даже технические характеристики двигателя. Для этого предусмотрены специальные редакторы, позволяющие создавать собственные вариации <em>Ситилайна</em>. <details class="faq-item"><summary>Где найти скины?</summary><div class="faq-answer"><p>Дополнительные варианты окраски (скины) можно найти на специализированных форумах в разделе"Текстуры", они устанавливаются в папку Texture.</p></div></details></p>
+
+<p>Участие в развитии мода — это отличный способ внести свой вклад в развитие симулятора. Даже небольшие правки в звуках или исправление координат дверей могут значительно улучшить опыт других игроков.</p>
+
+<p>В заключение стоит сказать, что <strong>Газель Next Cityline</strong> для OMSI 2 — это не просто добавление еще одного автобуса, а полноценный шаг к реализму российских перевозок. Модель дарит уникальные эмоции и позволяет по-новому взглянуть на привычные маршруты.</p>
+
+<details>
+<summary>Где скачать актуальную версию мода?</summary>
+<p>Официальные источники распространения мода обычно находятся на крупных форумах посвященных OMSI 2, таких как OMSI.ru или специализированных группах в социальных сетях. Всегда проверяйте дату загрузки и комментарии пользователей перед скачиванием.</p>
+</details>
+
+<details>
+<summary>Почему автобус дергается при движении?</summary>
+<p>Дерганье может быть вызвано конфликтом физики с другими модами или слишком высокими настройками детализации дороги. Попробуйте отключить другие аддоны на транспорт или снизить настройки физики в меню игры.</p>
+</details>
+
+<details>
+<summary>Можно ли изменить длину автобуса?</summary>
+<p>Изменение геометрических размеров (удлинение салона) возможно только через 3D-редакторы и требует глубоких знаний моделирования. Однако изменить вместимость (количество мест для посадки) можно через текстовые конфигурационные файлы (.cfg).</p>
+</details>
+
+<details>
+<summary>Работает ли голосовой оповещатель?</summary>
+<p>Да, в большинстве сборок реализован голосовой оповещатель остановок. Для его активации необходимо убедиться, что в настройках звука включен канал"Объявления" и выбран соответствующий языковой пакет.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#технические-особенности-модели-и-физика-поведения">Технические особенности модели и физика поведения</a></li><li><a href="#инструкция-по-установке-и-активации-мода">Инструкция по установке и активации мода</a></li><li><a href="#обзор-интерьера-салон-и-рабочее-место-водителя">Обзор интерьера: Салон и рабочее место водителя</a></li><li><a href="#маршруты-и-карты-для-тестирования">Маршруты и карты для тестирования</a></li><li><a href="#оптимизация-и-решение">Оптимизация и решение</a></li><li><a href="#перспективы-развития-и-моддинг">Перспективы развития и моддинг</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/s/sa/sabvufer-v-gazel-nekst.html" class="related-card">Сабвуфер в Газель NEXT: выбор, схема подключения и установка своими руками</a></li><li><a href="/articles/m/ma/magnitola-na-gazel-nekst-2-din.html" class="related-card">Магнитола на Газель Next 2 Дин: выбор, установка и обзор моделей</a></li><li><a href="/articles/s/sh/shtatnaya-magnitola-gazel-nekst-2din-raspinovka.html" class="related-card">Распиновка магнитолы Газель NEXT 2DIN: схемы, цвета проводов, ошибки</a></li><li><a href="/articles/t/te/televizor-gazel-nekst-artikul.html" class="related-card">Телевизор Газель NEXT: Артикул, коды и замена</a></li><li><a href="/articles/s/sh/shtatnaya-magnitola-gazel-nekst-instruktsiya.html" class="related-card">Штатная магнитола Газель NEXT: инструкция, коды ошибок, сброс</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/s/sa/sabvufer-v-gazel-nekst.html" class="related-bottom-card"><span class="related-bottom-title">Сабвуфер в Газель NEXT: выбор, схема подключения и установка своими руками</span><span class="related-bottom-desc">Как установить сабвуфер в Газель Некст: выбор места, расчет мощности, схемы подключения усилителя и </span></a><a href="/articles/m/ma/magnitola-na-gazel-nekst-2-din.html" class="related-bottom-card"><span class="related-bottom-title">Магнитола на Газель Next 2 Дин: выбор, установка и обзор моделей</span><span class="related-bottom-desc">Полный гид по выбору 2 din магнитолы на Газель Некст. Сравнение Android и штатных решений, пошаговая</span></a><a href="/articles/s/sh/shtatnaya-magnitola-gazel-nekst-2din-raspinovka.html" class="related-bottom-card"><span class="related-bottom-title">Распиновка магнитолы Газель NEXT 2DIN: схемы, цвета проводов, ошибки</span><span class="related-bottom-desc">Полная распиновка штатной магнитолы Газель Некст 2DIN. Разбор колонок, цветов проводов, подключение </span></a><a href="/articles/t/te/televizor-gazel-nekst-artikul.html" class="related-bottom-card"><span class="related-bottom-title">Телевизор Газель NEXT: Артикул, коды и замена</span><span class="related-bottom-desc">Ищите артикул штатного телевизора Газель NEXT? Полный список кодов мультимедиа, инструкция по снятию</span></a><a href="/articles/s/sh/shtatnaya-magnitola-gazel-nekst-instruktsiya.html" class="related-bottom-card"><span class="related-bottom-title">Штатная магнитола Газель NEXT: инструкция, коды ошибок, сброс</span><span class="related-bottom-desc">Полная инструкция для магнитолы Газель Некст. Как разблокировать, сбросить настройки, ввести код PIN</span></a><a href="/articles/a/ak/akustika-v-gazel-biznes.html" class="related-bottom-card"><span class="related-bottom-title">Акустика в Газель Бизнес: выбор, установка и схема подключения</span><span class="related-bottom-desc">Полный гид по улучшению звука в Газель Бизнес. Выбор динамиков, шумоизоляция, установка магнитолы 2D</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🚐 Gazel-Help</div>
+                    <p class="footer-about">Полная база знаний по ремонту, обслуживанию и эксплуатации автомобилей Газель: от пошаговых инструкций и схем электрооборудования до обзоров двигателей и честных отзывов владельцев.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/кузов-и-кабина/">📁 Кузов И Кабина</a></li>
+<li><a href="/category/электрика-и-электроника/">📁 Электрика И Электроника</a></li>
+<li><a href="/category/двигатель/">📁 Двигатель</a></li>
+<li><a href="/category/сравнения-и-выбор/">📁 Сравнения И Выбор</a></li>
+<li><a href="/category/кпп-и-трансмиссия/">📁 Кпп И Трансмиссия</a></li>
+<li><a href="/category/подвеска-и-рулевое/">📁 Подвеска И Рулевое</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Gazel-Help. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>
